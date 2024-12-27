@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Globalization;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 
 public class GameManager : SingleTone<GameManager>
 {
@@ -30,7 +32,6 @@ public class GameManager : SingleTone<GameManager>
 
     [Header("Shop Data")]
     #region About Shop Datas
-    private BaseSword sword_data;
     private HeroBase cur_hero;
     public Sprite nullImg;
     public Sprite[] imgs;
@@ -46,7 +47,7 @@ public class GameManager : SingleTone<GameManager>
     public int hero_increase_day;
     [SerializeField] int hero_max_cnt; 
     private int cur_day = 0;
-    public Queue<HeroBase> need_weapon_heros = new Queue<HeroBase>();
+    public Queue<HeroBase> survived_heros = new Queue<HeroBase>();
     #endregion
 
 
@@ -58,9 +59,7 @@ public class GameManager : SingleTone<GameManager>
     public class MaterialData
     {
         public int coins;
-        public int[] nums = new int[16]; //
-
-        
+        public int[] nums = new int[16];
     }
     #endregion
 
@@ -90,6 +89,24 @@ public class GameManager : SingleTone<GameManager>
         return materialData.nums[id] >= val;
     }
 
+    public bool CanBuySword(int id)
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            if (!IsExistMaterials(i, itemDatas[id].data[i])) return false;
+        }
+        return true;
+    }
+
+    public void GetMaterials(int earn_coins, Dictionary<int, int> earn_data)
+    {
+        EarnCoins(earn_coins);
+        foreach (var item in earn_data)
+        {
+            AddMaterials(item.Key, item.Value);
+        }
+    }
+
 
     public void UseCoins(int val) => materialData.coins -= val;
     public void EarnCoins(int val) => materialData.coins += val;
@@ -103,7 +120,6 @@ public class GameManager : SingleTone<GameManager>
         cur_day = 0;
         is_night = true;
         monsters = 10;
-        AddRandomHero();
         ChangeTime();
     }
 
@@ -124,7 +140,6 @@ public class GameManager : SingleTone<GameManager>
         {
             cur_day++;
             ComeNewHero();
-            // ComeHeroToGetWeapon();
             OpenSell();
         }
     }
@@ -144,19 +159,9 @@ public class GameManager : SingleTone<GameManager>
 
     public void AddNeedSword(HeroBase hero)
     {
-        need_weapon_heros.Enqueue(hero);
+        survived_heros.Enqueue(hero);
     }
 
-    private void ComeHeroToGetWeapon()
-    {
-        if(need_weapon_heros.Count > 0)
-        {
-            var need_hero = need_weapon_heros.Dequeue();
-            SetImage(need_hero);
-            cur_hero = need_hero;
-            Debug.Log(need_hero);
-        }
-    }
 
     private void AddRandomHero()
     {
@@ -174,7 +179,6 @@ public class GameManager : SingleTone<GameManager>
     {
         GameObject obj = new GameObject("noob");
         HeroBase hero = obj.AddComponent<NoobHero>();
-        // hero.SetSword(new SwordInfo(0f, 0f, 0f));
         hero.sprite = imgs[UnityEngine.Random.Range(0, imgs.Length)];
         hero.text = "Hug Me Please";
         return hero;
@@ -211,10 +215,31 @@ public class GameManager : SingleTone<GameManager>
         }
     }
 
+    public bool Try_Get_Item()
+    {
+        // Get Item 20%
+        return UnityEngine.Random.Range(1, 101) <= 20;
+    }
+
     public void KillMonster(int val, HeroBase hero)
     {
         monsters -= val;
-        heros.Enqueue(hero);
+        int item_cnt = 0;
+        while (val-->0)
+        {
+            if(item_cnt < 2 && Try_Get_Item())
+            {
+                item_cnt++;
+                
+                int id = 8 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 64+1)));
+                hero.earn_data[id] = 1;
+            }
+            else
+            {
+                hero.earn_coins += UnityEngine.Random.Range(0, 11);
+            }
+        }
+        survived_heros.Enqueue(hero);
     }
 
     private void MonsterEnd()
@@ -234,23 +259,14 @@ public class GameManager : SingleTone<GameManager>
     public class itemData
     {
         public string _name;
-        public Dictionary<string, string> data;
+        public Dictionary<int, int> data = new Dictionary<int, int>();
     }
-    public itemData[] itemDatas = new itemData[10];
+    public itemData[] itemDatas = new itemData[16];
 
-    public void MakeItemList(int i, Dictionary<string, string> save_data)
+    public void MakeItemList(int i, Dictionary<int, int> save_data)
     {
-        foreach(var item in save_data)
-        {
-            Debug.Log(item);
-        }
-        // itemDatas[i].data = save_data;
-        // itemDatas[i]._name = i.ToString();
-
-        // foreach(var item in save_data)
-        // {
-        //     Debug.Log(item);
-        // }
+        itemDatas[i].data = save_data;
+        itemDatas[i]._name = i.ToString();
     }
 
     private void IncreaseMonsters()
@@ -270,7 +286,6 @@ public class GameManager : SingleTone<GameManager>
         
         ChangeTime()
         */
-        Debug.Log(need_weapon_heros.Count);
         CheckRemainWeaponNeedHero();
     }
     public void SetWeaponHero()
@@ -292,6 +307,7 @@ public class GameManager : SingleTone<GameManager>
             Debug.Log("it's Bug. Report to Programmer");
         }
     }
+
     SwordInfo tempinfo;
     public void GetSword(SwordInfo sword) {
         if (sword != null)
@@ -302,12 +318,21 @@ public class GameManager : SingleTone<GameManager>
     public GameObject smithy;
     public void CheckRemainWeaponNeedHero()    
     {
-        if(need_weapon_heros.Count > 0)
+        Debug.Log("cur Survived : " + survived_heros.Count.ToString());
+        if(survived_heros.Count > 0)
         {
-            var need_hero = need_weapon_heros.Dequeue();
-            SetImage(need_hero);
-            smithy.gameObject.SetActive(true);
-            cur_hero = need_hero;
+            var hero = survived_heros.Dequeue();
+            GetMaterials(hero.earn_coins, hero.earn_data);
+            SetImage(hero);
+            if(hero.GetSword() == null)
+            {
+                smithy.gameObject.SetActive(true);
+                cur_hero = hero;
+            }
+            else
+            {
+                heros.Enqueue(hero);
+            }
         }
         else
         {

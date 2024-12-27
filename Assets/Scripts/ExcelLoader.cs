@@ -6,10 +6,6 @@ using System.IO;
 
 public class ExcelLoader : MonoBehaviour
 {
-	public TextAsset txt;
-	int colSize, rowSize;
-
-    public String Data;
 
 
 	void Load()
@@ -20,29 +16,20 @@ public class ExcelLoader : MonoBehaviour
 
 	void Start()
 	{
-		Load();
-		String currentText = Data.Substring(0, Data.Length-1);
-		String[] line = currentText.Split(" ");
-        foreach (var item in line)
-        {
-            Debug.Log(line);
-        }
-		colSize = line.Length;
-		rowSize = line[0].Split(",").Length;
+        //     SingleTone<GameManager>.Instance.MakeItemList(i, save_data);
+		// }      
+		List<Dictionary<string, object>> name_data = CSVReader.Read("item_name");
+		List<Dictionary<string, object>> data = CSVReader.Read("item_recipe");
+
 		
-		for (int i=0; i<colSize; ++i)
+		for (int i = 0; i < data.Count; i++)
 		{
-			string[] row = line[i].Split(",");
-            Dictionary<string, string> save_data = new Dictionary<string, string>();
-			int j = 0;
-            while(j<row.Length)
-            {
-                save_data[row[j]] = row[j+1];
-				// Debug.Log(int.Parse(row[j]));
-                j += 2;
-            }
-            
-            SingleTone<GameManager>.Instance.MakeItemList(i, save_data);
-		}        
+			Dictionary<int, int> item_data = new Dictionary<int, int>();
+			foreach (var item in data[i])
+			{
+				int id = int.Parse((string)name_data[0][item.Key]);
+				// item_data[id] = data[i][id].CloneViaSerialization;
+			}
+		}
 	}
 }

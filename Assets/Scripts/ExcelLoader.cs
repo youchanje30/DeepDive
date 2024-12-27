@@ -12,8 +12,15 @@ public class ExcelLoader : MonoBehaviour
     public String Data;
 
 
+	void Load()
+	{
+		
+	}
+
+
 	void Start()
 	{
+		Load();
 		String currentText = Data.Substring(0, Data.Length-1);
 		String[] line = currentText.Split(" ");
         foreach (var item in line)
@@ -31,6 +38,7 @@ public class ExcelLoader : MonoBehaviour
             while(j<row.Length)
             {
                 save_data[row[j]] = row[j+1];
+				// Debug.Log(int.Parse(row[j]));
                 j += 2;
             }
             

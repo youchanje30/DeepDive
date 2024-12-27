@@ -120,13 +120,11 @@ public class GameManager : SingleTone<GameManager>
         heros.Enqueue(hero);
     }
 
-    public GameObject sdfsdf;
     private HeroBase GetHero()
     {
         GameObject obj = new GameObject("noob");
         HeroBase hero = obj.AddComponent<NoobHero>();
-        GameObject sword = Instantiate(sdfsdf);
-        hero.SetSword(sword.GetComponent<BaseSword>());
+        hero.SetSword(new SwordInfo(0f, 0f, 0f));
         hero.sprite = imgs[UnityEngine.Random.Range(0, imgs.Length)];
         hero.text = "Hug Me Please";
         return hero;
@@ -206,14 +204,15 @@ public class GameManager : SingleTone<GameManager>
     public void SetWeaponHero()
     {
         if(cur_hero == null)
+        {
             Debug.Log("Something Wrong");
             Debug.Log("It Shoudn't be Null");
             return;
+        }
+            
         
         // It need Change;
-        GameObject sword = Instantiate(sdfsdf);
-        sword_data = sword.GetComponent<BaseSword>();
-        cur_hero.SetSword(sword_data);
+        cur_hero.SetSword(new SwordInfo(0f, 0f, 0f));
     }
 
     public void CheckRemainWeaponNeedHero()    
@@ -222,6 +221,7 @@ public class GameManager : SingleTone<GameManager>
         {
             var need_hero = need_weapon_heros.Dequeue();
             SetImage(need_hero);
+            cur_hero = need_hero;
         }
         else
         {

@@ -14,4 +14,5 @@ public class SwordInfo
         SurvivalRate = survivalRate;
         DestroyRate = destroyRate;
     }
+
 }

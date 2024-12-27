@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using UnityEditor.UI;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +12,7 @@ public abstract class HeroBase : MonoBehaviour
     public Sprite sprite;
     public String text;
     public float survive_rate;
-    public BaseSword sword;
+    public SwordInfo sword;
     
     #region Get Data Functions
     public Sprite GetISprite()
@@ -23,15 +23,13 @@ public abstract class HeroBase : MonoBehaviour
 
     #endregion
     
-    public BaseSword GetSword()// public BaseSword GetSword()
+    public SwordInfo GetSword()// public BaseSword GetSword()
     {
         return sword;
     }
 
-    public void SetSword(BaseSword _sword)
+    public void SetSword(SwordInfo _sword)
     {
-        if(sword != null) Destroy(sword);
-
         sword = _sword;
     }
 
@@ -60,7 +58,7 @@ public abstract class HeroBase : MonoBehaviour
 
     public int GetDamage()
     {
-        float damage = sword.ReturnStat();
+        float damage = sword.Damage;
         int killedMonster = Mathf.FloorToInt(damage);
         return killedMonster;
     }

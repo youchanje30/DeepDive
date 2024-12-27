@@ -13,6 +13,12 @@ public abstract class HeroBase : MonoBehaviour
     public String text;
     public float survive_rate;
     public SwordInfo sword;
+
+
+    // Rewards
+    public Dictionary<int, int> earn_data = new Dictionary<int, int>();
+    public int earn_coins;
+
     
     #region Get Data Functions
     public Sprite GetISprite()

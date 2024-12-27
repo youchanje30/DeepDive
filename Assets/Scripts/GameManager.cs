@@ -194,15 +194,66 @@ public class GameManager : SingleTone<GameManager>
     {
         heros.Enqueue(hero);
     }
-
+    private void ChangeHero(HeroBase hero)
+    {
+        GameObject parentObj = GameObject.Find("Main/BgCanvas/Character");
+        if (parentObj != null)
+        {
+            parentObj.SetActive(true);
+            foreach (Transform child in parentObj.transform)
+            {
+                string childname = child.name;
+                Sprite randomSprite = hero.GetSprite(childname);
+                if (randomSprite == null) continue;
+                Image transimage = child.GetComponent<Image>();
+                if (transimage != null)
+                {
+                    transimage.sprite = randomSprite;
+                    Debug.Log("바꿈");
+                }
+            }
+        }
+    }
     private HeroBase GetHero()
     {
         GameObject obj = new GameObject("noob");
         HeroBase hero = obj.AddComponent<NoobHero>();
-        hero.sprite = imgs[UnityEngine.Random.Range(0, imgs.Length)];
+
+        GameObject parentObj = GameObject.Find("Main/BgCanvas/Character");
+        if (parentObj != null)
+        {
+        parentObj.SetActive(true);
+            Debug.Log("parent있음");
+            foreach(Transform child in parentObj.transform)
+            {
+                Debug.Log("자식찾는중...");
+
+                string childName = child.name;
+                Sprite[] sprites = Resources.LoadAll<Sprite>("Character/"+childName);
+
+                if(sprites == null|| sprites.Length == 0)
+                {
+                    Debug.Log("폴더가 없거나 파일이 없음");
+
+                    continue;
+                }
+                Sprite RandomSprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
+                Image transimg = child.GetComponent<Image>();
+                if(transimg != null)
+                {
+                    Debug.Log("스프라이트 바꿈");
+
+                    transimg.sprite = RandomSprite;
+                    hero.SetSprites(transimg.sprite);
+                }
+            }
+            Debug.Log(parentObj.name);
+        }
+
         hero.text = "Hug Me Please";
         return hero;
     }
+
     #endregion
 
 
@@ -340,24 +391,34 @@ public class GameManager : SingleTone<GameManager>
     public void CheckRemainWeaponNeedHero()    
     {
         Debug.Log("cur Survived : " + survived_heros.Count.ToString());
-        if(survived_heros.Count > 0)
+
+        if (survived_heros.Count > 0)
         {
+
             var hero = survived_heros.Dequeue();
+            ChangeHero(hero);
             GetMaterials(hero.earn_coins, hero.earn_data);
             SetImage(hero);
             if(hero.GetSword() == null)
             {
-                smithy.gameObject.SetActive(true);
                 cur_hero = hero;
+                smithy.gameObject.SetActive(true);
+
             }
             else
             {
+                Debug.Log("같은 친구 옴");
                 heros.Enqueue(hero);
             }
         }
         else
         {
-            hero_Image.sprite = nullImg;
+            //hero_Image.sprite = nullImg;
+            GameObject parentObj = GameObject.Find("Main/BgCanvas/Character");
+            if (parentObj != null)
+            {
+            parentObj.SetActive(false);
+            }
             smithy.gameObject.SetActive(false);
         }
     }
@@ -380,7 +441,7 @@ public class GameManager : SingleTone<GameManager>
     #region About Shop Process
     void SetImage(HeroBase hero)
     {
-        hero_Image.sprite = hero.sprite;
+        //hero_Image.sprite = hero.sprite;
         hero_Text.text = hero.text;
     }
     #endregion

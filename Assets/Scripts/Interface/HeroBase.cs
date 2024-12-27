@@ -9,26 +9,51 @@ using UnityEngine.UI;
 
 public abstract class HeroBase : MonoBehaviour
 {
-    public Sprite sprite;
+    //public Sprite sprite;
     public String text;
     public float survive_rate;
     public SwordInfo sword;
 
 
-    // Rewards
+
     public Dictionary<int, int> earn_data = new Dictionary<int, int>();
     public int earn_coins;
 
-    
-    #region Get Data Functions
-    public Sprite GetISprite()
-    {
-        return sprite;
-    }
 
+    public Dictionary<string, Sprite> Allsprites = new Dictionary<string, Sprite>();
+    public List<Sprite> Asprites = new List<Sprite>();
+    public void SetSprites(Sprite sprites)
+    {
+        if (sprites == null)
+            return;
+
+
+        string folderName = getfolderName(sprites);
+        if (!string.IsNullOrEmpty(folderName) && !Allsprites.ContainsKey(folderName))
+        {
+            Allsprites[folderName] = sprites;
+            Asprites.Add(sprites);
+        }
+
+    }
+    public Sprite GetSprite(string folderName)
+    {
+        return Allsprites[folderName];
+    }
+    private string getfolderName(Sprite sprite)
+    {
+        string[] parts = sprite.name.Split('_');
+        if (parts.Length > 1)
+        {
+            return parts[1];
+        }
+
+        return string.Empty;
+    }
+    #region Get Data Functions
 
     #endregion
-    
+
     public SwordInfo GetSword()// public BaseSword GetSword()
     {
         return sword;
@@ -37,7 +62,7 @@ public abstract class HeroBase : MonoBehaviour
     public void SetSword(SwordInfo _sword)
     {
         sword = _sword;
-        Debug.Log($"sword: {sword.Damage} , SurvivalRate:{sword.SurvivalRate} ,DestroyRate: {sword.DestroyRate}" );
+        Debug.Log($"sword: {sword.Damage} , SurvivalRate:{sword.SurvivalRate} ,DestroyRate: {sword.DestroyRate}");
     }
 
     public bool isDead()
@@ -55,15 +80,15 @@ public abstract class HeroBase : MonoBehaviour
 
     public void Battle()
     {
-        if(isDead())
+        if (isDead())
         {
             Debug.Log("I Dead" + this.ToString());
             return;
         }
         SingleTone<GameManager>.Instance.KillMonster(GetDamage(), this);
-        
+
         // if Sword break, Add Need Sword
-        if(UnityEngine.Random.Range(0f, 100f) < 10)//sword.GetBreakRate())
+        if (UnityEngine.Random.Range(0f, 100f) < 10)//sword.GetBreakRate())
         {
             SingleTone<GameManager>.Instance.AddNeedSword(this);
             Debug.Log("Need !");

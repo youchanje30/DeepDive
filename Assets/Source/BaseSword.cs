@@ -12,6 +12,7 @@ public abstract class BaseSword : MonoBehaviour
     public float maxDistance = 5.0f;
     public float SurvivalRate = 30.0f;   
     public float DestroyRate = 10.0f;
+    public bool UpgradeEnd = false;
     SwordInfo swordInfo;
     int UpgradeCnt = 0;
     private void Start()
@@ -26,6 +27,7 @@ public abstract class BaseSword : MonoBehaviour
         if(UpgradeCnt >= UpgradeTarget.Length)
         {
             Debug.Log("end upgrade");
+            UpgradeEnd = true;
             SwordInfo swordInfo = new SwordInfo(AtkDamge, SurvivalRate, DestroyRate);
             return;
         }

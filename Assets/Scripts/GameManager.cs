@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Globalization;
 
 public class GameManager : SingleTone<GameManager>
 {
@@ -31,6 +32,7 @@ public class GameManager : SingleTone<GameManager>
     #region About Shop Datas
     private BaseSword sword_data;
     private HeroBase cur_hero;
+    public Sprite nullImg;
     public Sprite[] imgs;
     [SerializeField] Image hero_Image;
     [SerializeField] TMP_Text hero_Text;
@@ -45,6 +47,52 @@ public class GameManager : SingleTone<GameManager>
     [SerializeField] int hero_max_cnt; 
     private int cur_day = 0;
     public Queue<HeroBase> need_weapon_heros = new Queue<HeroBase>();
+    #endregion
+
+
+    #region  Material & Coins Data
+    [Space(10)]
+    [Header("Material and Coins Data")]
+    public MaterialData materialData;
+    [Serializable]
+    public class MaterialData
+    {
+        public int coins;
+        public int[] nums = new int[16]; //
+
+        
+    }
+    #endregion
+
+
+    #region Material & Coin Functions
+    /// <summary>
+    /// add Material with id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="val"></param>
+    public void AddMaterials(int id, int val) => materialData.nums[id] += val;
+
+    /// <summary>
+    /// use material with id, not except check
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="val"></param>
+    public void UseMaterials(int id, int val) => materialData.nums[id] -= val;
+
+    /// <summary>
+    /// is exist material more val 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="val"></param>
+    public bool IsExistMaterials(int id, int val = 0)
+    {
+        return materialData.nums[id] >= val;
+    }
+
+
+    public void UseCoins(int val) => materialData.coins -= val;
+    public void EarnCoins(int val) => materialData.coins += val;
     #endregion
 
     void Start()
@@ -126,7 +174,7 @@ public class GameManager : SingleTone<GameManager>
     {
         GameObject obj = new GameObject("noob");
         HeroBase hero = obj.AddComponent<NoobHero>();
-        hero.SetSword(new SwordInfo(0f, 0f, 0f));
+        // hero.SetSword(new SwordInfo(0f, 0f, 0f));
         hero.sprite = imgs[UnityEngine.Random.Range(0, imgs.Length)];
         hero.text = "Hug Me Please";
         return hero;
@@ -172,16 +220,38 @@ public class GameManager : SingleTone<GameManager>
     private void MonsterEnd()
     {
         // view wedding
+        Debug.Log("You Marry Monster");
     }
 
     private void HeroEnd(int hero)
     {
+        Debug.Log("You Marry Hero");
         // get hero's face
         // set wedding base queen's Money
 
     }
 
+    public class itemData
+    {
+        public string _name;
+        public Dictionary<string, string> data;
+    }
+    public itemData[] itemDatas = new itemData[10];
 
+    public void MakeItemList(int i, Dictionary<string, string> save_data)
+    {
+        foreach(var item in save_data)
+        {
+            Debug.Log(item);
+        }
+        // itemDatas[i].data = save_data;
+        // itemDatas[i]._name = i.ToString();
+
+        // foreach(var item in save_data)
+        // {
+        //     Debug.Log(item);
+        // }
+    }
 
     private void IncreaseMonsters()
     {
@@ -217,6 +287,10 @@ public class GameManager : SingleTone<GameManager>
         {
             cur_hero.SetSword(tempinfo);
         }
+        else
+        {
+            Debug.Log("it's Bug. Report to Programmer");
+        }
     }
     SwordInfo tempinfo;
     public void GetSword(SwordInfo sword) {
@@ -237,7 +311,7 @@ public class GameManager : SingleTone<GameManager>
         }
         else
         {
-            //SetImage(null);
+            hero_Image.sprite = nullImg;
             smithy.gameObject.SetActive(false);
         }
     }

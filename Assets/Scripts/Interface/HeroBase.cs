@@ -37,7 +37,7 @@ public abstract class HeroBase : MonoBehaviour
     public bool isDead()
     {
         Debug.Log(survive_rate);
-        return !(UnityEngine.Random.Range(0f, 100f) < survive_rate);
+        return !(UnityEngine.Random.Range(0f, 100f) < sword.SurvivalRate);
     }
 
     public void Battle()
@@ -59,8 +59,7 @@ public abstract class HeroBase : MonoBehaviour
 
     public int GetDamage()
     {
-        float damage = sword.Damage;
-        int killedMonster = Mathf.FloorToInt(damage);
+        int killedMonster = Mathf.FloorToInt(sword.Damage);
         return killedMonster;
     }
 

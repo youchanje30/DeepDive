@@ -35,5 +35,4 @@ public abstract class BaseSword : MonoBehaviour
         AtkDamge += value;
         UpgradeCnt++;
     }
-
 }

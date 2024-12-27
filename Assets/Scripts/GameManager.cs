@@ -31,6 +31,7 @@ public class GameManager : SingleTone<GameManager>
     #region About Shop Datas
     private BaseSword sword_data;
     private HeroBase cur_hero;
+    public Sprite nullImg;
     public Sprite[] imgs;
     [SerializeField] Image hero_Image;
     [SerializeField] TMP_Text hero_Text;
@@ -126,7 +127,7 @@ public class GameManager : SingleTone<GameManager>
     {
         GameObject obj = new GameObject("noob");
         HeroBase hero = obj.AddComponent<NoobHero>();
-        hero.SetSword(new SwordInfo(0f, 0f, 0f));
+        // hero.SetSword(new SwordInfo(0f, 0f, 0f));
         hero.sprite = imgs[UnityEngine.Random.Range(0, imgs.Length)];
         hero.text = "Hug Me Please";
         return hero;
@@ -172,10 +173,12 @@ public class GameManager : SingleTone<GameManager>
     private void MonsterEnd()
     {
         // view wedding
+        Debug.Log("You Marry Monster");
     }
 
     private void HeroEnd(int hero)
     {
+        Debug.Log("You Marry Hero");
         // get hero's face
         // set wedding base queen's Money
 
@@ -217,6 +220,10 @@ public class GameManager : SingleTone<GameManager>
         {
             cur_hero.SetSword(tempinfo);
         }
+        else
+        {
+            Debug.Log("it's Bug. Report to Programmer");
+        }
     }
     SwordInfo tempinfo;
     public void GetSword(SwordInfo sword) {
@@ -237,7 +244,7 @@ public class GameManager : SingleTone<GameManager>
         }
         else
         {
-            //SetImage(null);
+            hero_Image.sprite = nullImg;
             smithy.gameObject.SetActive(false);
         }
     }

@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO; 
+using System.IO;
+using System.Data.Common;
 
 public class ExcelLoader : MonoBehaviour
 {
@@ -27,9 +28,12 @@ public class ExcelLoader : MonoBehaviour
 			Dictionary<int, int> item_data = new Dictionary<int, int>();
 			foreach (var item in data[i])
 			{
-				int id = int.Parse((string)name_data[0][item.Key]);
-				// item_data[id] = data[i][id].CloneViaSerialization;
+				var item_name = item.Key;
+				
+				int id = int.Parse(name_data[0][item_name].ToString());
+				item_data[id] = int.Parse(item.Value.ToString());
 			}
+			SingleTone<GameManager>.Instance.MakeItemList(i, item_data);
 		}
 	}
 }

@@ -256,6 +256,7 @@ public class GameManager : SingleTone<GameManager>
 
     }
 
+    [Serializable]
     public class itemData
     {
         public string _name;

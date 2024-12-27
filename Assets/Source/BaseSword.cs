@@ -34,9 +34,7 @@ public abstract class BaseSword : MonoBehaviour
         AtkDamge += value;
         UpgradeCnt++;
     }
-<<<<<<< Updated upstream
 
-=======
     private const string BasePath = "Sword/";
     public static SwordType Create<SwordType>(Transform parent, string addpath) where SwordType : BaseSword
     {
@@ -55,9 +53,5 @@ public abstract class BaseSword : MonoBehaviour
         prefabobj.transform.localPosition = Vector3.zero;
         return sword;   
     }
-    public void Generate(int index)
-    {
-        //GameObject newObj = Instantiate()
-    }
->>>>>>> Stashed changes
+
 }

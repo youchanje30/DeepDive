@@ -184,7 +184,18 @@ public class GameManager : SingleTone<GameManager>
 
     }
 
+    public class itemData
+    {
+        public string _name;
+        public Dictionary<string, string> data;
+    }
+    public itemData[] itemDatas;
 
+    public void MakeItemList(int i, Dictionary<string, string> save_data)
+    {
+        itemDatas[i].data = save_data;
+        itemDatas[i]._name = i.ToString();
+    }
 
     private void IncreaseMonsters()
     {

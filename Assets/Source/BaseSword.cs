@@ -23,6 +23,9 @@ public abstract class BaseSword : MonoBehaviour
     }
     public void Upgrade(float value)
     {
+        // Audio
+        SingleTone<AudioManager>.Instance.PlaySfx(Sfx.hammer);
+
         if(UpgradeCnt >= UpgradeTarget.Length)
         {
             Debug.Log("end upgrade");
@@ -41,10 +44,10 @@ public abstract class BaseSword : MonoBehaviour
         GameObject prefabobj = GameObject.Instantiate(Resources.Load(BasePath + addpath.ToString())) as GameObject;
         if (prefabobj != null)
         {
-            Debug.Log("ÀÖ");
+            Debug.Log("ï¿½ï¿½");
         }
         else
-            Debug.Log("¾ø");
+            Debug.Log("ï¿½ï¿½");
         SwordType sword = prefabobj.GetComponent<SwordType>();
         if(sword == null)
         {

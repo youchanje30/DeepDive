@@ -17,6 +17,8 @@ public class BuyItem : MonoBehaviour
 
     void BuyItems()
     {
+        // Audio
+        SingleTone<AudioManager>.Instance.PlaySfx(Sfx.buy);
         if (SingleTone<GameManager>.Instance.IsExistCoins(ID, itemcnt))
         {
             SingleTone<GameManager>.Instance.AddMaterials(ID, itemcnt);
@@ -25,6 +27,7 @@ public class BuyItem : MonoBehaviour
             itemcnt = 0;
             tmp.text = itemcnt.ToString();
         }
+
     }
     public void UpItemCount()
     {

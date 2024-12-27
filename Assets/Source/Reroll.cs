@@ -13,6 +13,9 @@ public class Reroll : MonoBehaviour
     }
     private void Reset()
     {
+        // Audio
+        SingleTone<AudioManager>.Instance.PlaySfx(Sfx.reroll);
+
         List<int> idList = new List<int>();
         for (int i = 0; i < items.Length; i++)
         {
@@ -26,7 +29,7 @@ public class Reroll : MonoBehaviour
                 Debug.Log($"Duplicate ID found :{ID}");
                 while (idList.Contains(ID))
                 {
-                    Debug.Log("µ¹¾Æ°¡´ÂÁß-----" + ID);
+                    Debug.Log("ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ï¿½-----" + ID);
                     items[i].Reroll();
                     ID = items[i].GetID();
                 }

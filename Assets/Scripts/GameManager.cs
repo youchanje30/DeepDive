@@ -108,6 +108,10 @@ public class GameManager : SingleTone<GameManager>
     }
 
 
+    public bool IsExistCoins(int val)
+    {
+        return materialData.coins >= val;
+    }
     public void UseCoins(int val) => materialData.coins -= val;
     public void EarnCoins(int val) => materialData.coins += val;
     #endregion

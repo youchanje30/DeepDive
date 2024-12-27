@@ -43,6 +43,13 @@ public abstract class HeroBase : MonoBehaviour
     public bool isDead()
     {
         Debug.Log(survive_rate);
+        if (sword == null)
+        {
+            Debug.Log("here is Null");
+            return true;
+        }
+
+
         return !(UnityEngine.Random.Range(0f, 100f) < sword.SurvivalRate);
     }
 
@@ -65,6 +72,12 @@ public abstract class HeroBase : MonoBehaviour
 
     public int GetDamage()
     {
+        if (sword == null)
+        {
+            Debug.Log("Sword is Null Check Plz");
+            return 0;
+        }
+
         int killedMonster = Mathf.FloorToInt(sword.Damage);
         return killedMonster;
     }

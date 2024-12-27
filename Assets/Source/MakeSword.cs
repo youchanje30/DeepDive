@@ -24,8 +24,9 @@ public class MakeSword : MonoBehaviour
         {
             Debug.Log("transint :" + Swordint);
         }
-        //if (SingleTone<GameManager>.Instance.CanBuySword(Swordint))
-        //{
+        if (SingleTone<GameManager>.Instance.CanBuySword(Swordint))
+        {
+            SingleTone<GameManager>.Instance.BuySword(Swordint);
             Debug.Log(swordpath);
             BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
             if (baseSword != null)
@@ -34,7 +35,7 @@ public class MakeSword : MonoBehaviour
                 Destroy(baseSword.gameObject);
             }
             WoodSword.Create<WoodSword>(transform.parent.parent, Swordint);
-        //}
+        }
     }
 
     void Update()

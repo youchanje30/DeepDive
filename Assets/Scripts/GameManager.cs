@@ -60,6 +60,7 @@ public class GameManager : SingleTone<GameManager>
     {
         public int coins;
         public int[] nums = new int[16];
+        public int[] prices = new int[16];
     }
     #endregion
 
@@ -89,10 +90,19 @@ public class GameManager : SingleTone<GameManager>
         return materialData.nums[id] >= val;
     }
 
+    public void BuySword(int id)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            materialData.nums[i] -= itemDatas[id].data[i];
+        }
+    }
+
     public bool CanBuySword(int id)
     {
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 8; i++)
         {
+            Debug.Log(i);
             if (!IsExistMaterials(i, itemDatas[id].data[i])) return false;
         }
         return true;
@@ -108,11 +118,11 @@ public class GameManager : SingleTone<GameManager>
     }
 
 
-    public bool IsExistCoins(int id,int val)
+    public bool IsExistCoins(int id, int val)
     {
-        return materialData.coins >= val;
+        return materialData.coins > materialData.prices[id] * val;
     }
-    public void UseCoins(int id,int val) => materialData.coins -= val;
+    public void UseCoins(int id,int val) => materialData.coins -= materialData.prices[id] * val;
     public void EarnCoins(int val) => materialData.coins += val;
     #endregion
     public GameObject shop;
@@ -129,6 +139,10 @@ public class GameManager : SingleTone<GameManager>
 
     public void ChangeTime()
     {
+        // except process
+        if(!is_night && survived_heros.Count > 0) return;
+
+
         is_night = !is_night;
         Debug.Log(heros.Count);
 
@@ -143,6 +157,7 @@ public class GameManager : SingleTone<GameManager>
         }
         else
         {
+            shop.SetActive(false);
             cur_day++;
             ComeNewHero();
             OpenSell();

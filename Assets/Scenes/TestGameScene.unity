@@ -2594,6 +2594,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5529326515755694862, guid: ce4de0118a184e842a0a2d77f8688ed2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5712316197321192068, guid: ce4de0118a184e842a0a2d77f8688ed2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3738,6 +3742,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528cab617ddb76a479b27a17923b29e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &993901506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 993901507}
+  - component: {fileID: 993901508}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &993901507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993901506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &993901508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993901506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec5bbd501c53bc4f8fb1ec2c45e5615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioGroups:
+  - audioClips:
+    - {fileID: 8300000, guid: 72f6af14096c64040b3e5f6d7ca322a7, type: 3}
+  - audioClips:
+    - {fileID: 8300000, guid: 8b5686a2886fb624a9ccb511c4533543, type: 3}
+    - {fileID: 8300000, guid: c552de6def7c6524290e9c23ebd8df0b, type: 3}
+    - {fileID: 8300000, guid: 1d0b41a25c1a9b94abab359b6c4e7777, type: 3}
+    - {fileID: 8300000, guid: 24e85542b7317b1479e88741a08a00c2, type: 3}
+    - {fileID: 8300000, guid: 9f890d1b224571e4a88cb8633d2b7422, type: 3}
+    - {fileID: 8300000, guid: b94c85b1bb9a95e419bf02f4539672c0, type: 3}
+    - {fileID: 8300000, guid: 20d3c029c50a01d4e92b12fb964a4878, type: 3}
+    - {fileID: 8300000, guid: 7fb1bd77c5e1b3042807add11dd4228a, type: 3}
+    - {fileID: 8300000, guid: 7935e04c9dab76840aae3d5171ff4f26, type: 3}
+  - audioClips:
+    - {fileID: 8300000, guid: daae1bb74b67fab40a8a19f18fa504aa, type: 3}
+  - audioClips:
+    - {fileID: 8300000, guid: 70c2477d34fe14a41b23b34f78fac24b, type: 3}
 --- !u!1 &1005925358
 GameObject:
   m_ObjectHideFlags: 0
@@ -5321,7 +5386,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1743114385
 RectTransform:
@@ -5335,8 +5400,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1859355124}
   - {fileID: 773044051}
+  - {fileID: 1859355124}
   - {fileID: 1098430262}
   - {fileID: 1798448151}
   m_Father: {fileID: 0}
@@ -5409,6 +5474,18 @@ MonoBehaviour:
     IconTexture: {fileID: 0}
     IsIconRecursive: 1
     BackgroundType: 1000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 993901506}
+    Ordinal: 3
+    Priority: 0
+    IconType: 103000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
@@ -6454,11 +6531,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 305115572}
+  - {fileID: 993901507}
   - {fileID: 1146527279}
   - {fileID: 978509979}
   - {fileID: 801856620}
-  - {fileID: 1743114385}
   - {fileID: 1297097745}
   - {fileID: 1745445591}
   - {fileID: 1265742461}
   - {fileID: 903188639}
+  - {fileID: 1743114385}

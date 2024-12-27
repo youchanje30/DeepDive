@@ -31,6 +31,7 @@ public abstract class HeroBase : MonoBehaviour
     public void SetSword(SwordInfo _sword)
     {
         sword = _sword;
+        Debug.Log($"sword: {sword.Damage} , SurvivalRate:{sword.SurvivalRate} ,DestroyRate: {sword.DestroyRate}" );
     }
 
     public bool isDead()

@@ -49,6 +49,8 @@ public class GameManager : SingleTone<GameManager>
 
     void Start()
     {
+        smithy.gameObject.SetActive(false);
+
         bar.maxValue = max_monsters;
         cur_day = 0;
         is_night = true;
@@ -211,21 +213,32 @@ public class GameManager : SingleTone<GameManager>
         }
             
         
-        // It need Change;
-        cur_hero.SetSword(new SwordInfo(0f, 0f, 0f));
+        if(tempinfo != null)
+        {
+            cur_hero.SetSword(tempinfo);
+        }
     }
-
+    SwordInfo tempinfo;
+    public void GetSword(SwordInfo sword) {
+        if (sword != null)
+        {
+            tempinfo = sword;
+        }
+    }
+    public GameObject smithy;
     public void CheckRemainWeaponNeedHero()    
     {
         if(need_weapon_heros.Count > 0)
         {
             var need_hero = need_weapon_heros.Dequeue();
             SetImage(need_hero);
+            smithy.gameObject.SetActive(true);
             cur_hero = need_hero;
         }
         else
         {
-            SetImage(null);
+            //SetImage(null);
+            smithy.gameObject.SetActive(false);
         }
     }
 

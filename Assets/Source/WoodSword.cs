@@ -16,7 +16,6 @@ public class WoodSword : BaseSword
     }
     private void SelectUpgrade()
     {
-
         Vector3 mousePos = Input.mousePosition;
         Vector3 WorldPos = Camera.main.ScreenToWorldPoint(mousePos);
         WorldPos.z = 0f;
@@ -32,7 +31,7 @@ public class WoodSword : BaseSword
             float distance = Vector2.Distance(MousePos2D, UpgradeTarget[i]);
             if (distance > maxDistance )
             {
-                Debug.Log("들어감"+ distance);
+                Debug.Log("enter"+ distance);
                 continue;
             }
             float weight = distance > 0 ? Mathf.Min(1 / distance, maxValue) : maxValue;
@@ -44,10 +43,9 @@ public class WoodSword : BaseSword
         }
         if(maxWeight <= maxDistance && maxWeight != float.MinValue)
         {
-        Debug.Log($"클릭된거:{nearPos},거리 :{maxWeight},클릭위치 : {WorldPos}");
+        Debug.Log($"clcik obj:{nearPos}, weight :{maxWeight},clickpos : {WorldPos}");
             Upgrade(maxWeight);
         }
-
     }
 
 }

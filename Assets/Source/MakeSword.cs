@@ -15,20 +15,26 @@ public class MakeSword : MonoBehaviour
     private void CreateSword()
     {
         swordpath = SingleTone<UIManager>.Instance.GetIndex();
+        int Swordint;
         if(swordpath == null)
         {
             swordpath = "1";
         }
-        Debug.Log(swordpath);
-        BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
-        if (baseSword != null)
+        if (int.TryParse(swordpath, out Swordint))
         {
-            Debug.Log("»Æ¿Œ"+baseSword.name);
-
-            Destroy(baseSword.gameObject);
+            Debug.Log("transint :" + Swordint);
         }
-        WoodSword woodSword = WoodSword.Create<WoodSword>(transform.parent.parent, swordpath);
-
+        //if (SingleTone<GameManager>.Instance.CanBuySword(Swordint))
+        //{
+            Debug.Log(swordpath);
+            BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
+            if (baseSword != null)
+            {
+                Debug.Log("check"+baseSword.name);
+                Destroy(baseSword.gameObject);
+            }
+            WoodSword.Create<WoodSword>(transform.parent.parent, Swordint);
+        //}
     }
 
     void Update()

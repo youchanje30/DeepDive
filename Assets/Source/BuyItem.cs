@@ -14,15 +14,17 @@ public class BuyItem : MonoBehaviour
         tmp = GetComponentInChildren<TMP_Text>();
         Reroll();
     }
-    void Update()
-    {
-    
-    }
+
     void BuyItems()
     {
-        SingleTone<GameManager>.Instance.AddMaterials(ID, itemcnt);
-        itemcnt = 0;
-        tmp.text = itemcnt.ToString();
+        if (SingleTone<GameManager>.Instance.IsExistCoins(ID, itemcnt))
+        {
+            SingleTone<GameManager>.Instance.AddMaterials(ID, itemcnt);
+            SingleTone<GameManager>.Instance.UseCoins(ID, itemcnt);
+
+            itemcnt = 0;
+            tmp.text = itemcnt.ToString();
+        }
     }
     public void UpItemCount()
     {

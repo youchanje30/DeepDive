@@ -108,18 +108,18 @@ public class GameManager : SingleTone<GameManager>
     }
 
 
-    public bool IsExistCoins(int val)
+    public bool IsExistCoins(int id,int val)
     {
         return materialData.coins >= val;
     }
-    public void UseCoins(int val) => materialData.coins -= val;
+    public void UseCoins(int id,int val) => materialData.coins -= val;
     public void EarnCoins(int val) => materialData.coins += val;
     #endregion
-
+    public GameObject shop;
     void Start()
     {
         smithy.gameObject.SetActive(false);
-
+        shop.gameObject.SetActive(false);
         bar.maxValue = max_monsters;
         cur_day = 0;
         is_night = true;
@@ -139,6 +139,7 @@ public class GameManager : SingleTone<GameManager>
             IncreaseMonsters();
             CheckClear();
             OpenShop();
+            Debug.Log("?");
         }
         else
         {
@@ -349,6 +350,8 @@ public class GameManager : SingleTone<GameManager>
 
     public void OpenShop()
     {
+        shop.gameObject.SetActive(true);
+
         /*
         ChangeView()
         select_materials 3

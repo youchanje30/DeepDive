@@ -36,16 +36,15 @@ public abstract class BaseSword : MonoBehaviour
     }
 
     private const string BasePath = "Sword/";
-    public static SwordType Create<SwordType>(Transform parent, string addpath) where SwordType : BaseSword
+    public static SwordType Create<SwordType>(Transform parent, int addpath) where SwordType : BaseSword
     {
-        Debug.Log(BasePath + addpath);
-        GameObject prefabobj = GameObject.Instantiate(Resources.Load(BasePath + addpath)) as GameObject;
+        GameObject prefabobj = GameObject.Instantiate(Resources.Load(BasePath + addpath.ToString())) as GameObject;
         if (prefabobj != null)
         {
             Debug.Log("ÀÖ");
         }
         else
-            Debug.Log(":¾ø");
+            Debug.Log("¾ø");
         SwordType sword = prefabobj.GetComponent<SwordType>();
         if(sword == null)
         {

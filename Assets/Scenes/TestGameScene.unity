@@ -4308,6 +4308,24 @@ MonoBehaviour:
   materialData:
     coins: 0
     nums: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  shop: {fileID: 903188638}
+  itemDatas:
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
+  - _name: 
   smithy: {fileID: 1265742460}
 --- !u!1 &1181006917
 GameObject:

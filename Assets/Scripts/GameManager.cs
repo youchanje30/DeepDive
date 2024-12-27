@@ -89,6 +89,15 @@ public class GameManager : SingleTone<GameManager>
         return materialData.nums[id] >= val;
     }
 
+    public bool CanBuySword(int id)
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            if (!IsExistMaterials(i, itemDatas[id].data[i])) return false;
+        }
+        return true;
+    }
+
     public void GetMaterials(int earn_coins, Dictionary<int, int> earn_data)
     {
         EarnCoins(earn_coins);
@@ -250,23 +259,14 @@ public class GameManager : SingleTone<GameManager>
     public class itemData
     {
         public string _name;
-        public Dictionary<string, string> data;
+        public Dictionary<int, int> data = new Dictionary<int, int>();
     }
-    public itemData[] itemDatas = new itemData[10];
+    public itemData[] itemDatas = new itemData[16];
 
-    public void MakeItemList(int i, Dictionary<string, string> save_data)
+    public void MakeItemList(int i, Dictionary<int, int> save_data)
     {
-        foreach(var item in save_data)
-        {
-            Debug.Log(item);
-        }
-        // itemDatas[i].data = save_data;
-        // itemDatas[i]._name = i.ToString();
-
-        // foreach(var item in save_data)
-        // {
-        //     Debug.Log(item);
-        // }
+        itemDatas[i].data = save_data;
+        itemDatas[i]._name = i.ToString();
     }
 
     private void IncreaseMonsters()

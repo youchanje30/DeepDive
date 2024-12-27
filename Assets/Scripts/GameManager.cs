@@ -206,14 +206,20 @@ public class GameManager : SingleTone<GameManager>
     public void SetWeaponHero()
     {
         if(cur_hero == null)
+        {
             Debug.Log("Something Wrong");
             Debug.Log("It Shoudn't be Null");
             return;
-        
+        }
+        BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
+        if (baseSword != null && baseSword.UpgradeEnd)
+        {
+            cur_hero.SetSword(baseSword.ReturnStat());
+        }
         // It need Change;
-        GameObject sword = Instantiate(sdfsdf);
-        sword_data = sword.GetComponent<BaseSword>();
-        cur_hero.SetSword(sword_data);
+        //GameObject sword = Instantiate(sdfsdf);
+        //sword_data = sword.GetComponent<BaseSword>();
+        //cur_hero.SetSword(sword_data);
     }
 
     public void CheckRemainWeaponNeedHero()    

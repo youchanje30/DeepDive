@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
-public class BaseSword : MonoBehaviour
+public abstract class BaseSword : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector2[] UpgradeTarget;
+    public float AtkDamge;
+    public float maxValue;//MaxUpgrade
+    public float maxDistance = 5.0f;
+
+    public float ReturnStat()
     {
-        
+        return AtkDamge;
+    }
+    public void Upgrade(float value)
+    {
+        AtkDamge += value;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

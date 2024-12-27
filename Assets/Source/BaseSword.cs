@@ -9,7 +9,6 @@ public abstract class BaseSword : MonoBehaviour
     public Vector2[] UpgradeTarget;
     public float AtkDamge;
     public float maxValue;//MaxUpgrade
-    public float maxDistance = 5.0f;
     public float SurvivalRate = 30.0f;   
     public float DestroyRate = 10.0f;
     public bool UpgradeEnd = false;
@@ -35,4 +34,24 @@ public abstract class BaseSword : MonoBehaviour
         AtkDamge += value;
         UpgradeCnt++;
     }
+
+    private const string BasePath = "Sword/";
+    public static SwordType Create<SwordType>(Transform parent, string addpath) where SwordType : BaseSword
+    {
+        GameObject prefabobj = GameObject.Instantiate(Resources.Load(BasePath + addpath)) as GameObject;
+        SwordType sword = prefabobj.GetComponent<SwordType>();
+        if(sword == null)
+        {
+            sword = prefabobj.AddComponent<SwordType>();
+        }
+        if (parent != null)
+        {
+            prefabobj.transform.SetParent(parent);
+        }
+
+        prefabobj.transform.localScale = Vector3.one;
+        prefabobj.transform.localPosition = Vector3.zero;
+        return sword;   
+    }
+
 }

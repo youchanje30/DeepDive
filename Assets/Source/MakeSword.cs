@@ -9,13 +9,23 @@ public class MakeSword : MonoBehaviour
     void Start()
     {
         Button button = GetComponent<Button>();
-        //button.onClick.AddListener(MakeSword);
+        button.onClick.AddListener(CreateSword);
     }
-    //void MakeSword()
-    //{
-        
-    //}
-    
+    public string swordpath;
+    private void CreateSword()
+    {
+        swordpath = SingleTone<UIManager>.Instance.GetIndex();
+        BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
+        if (baseSword != null)
+        {
+            Debug.Log("»Æ¿Œ"+baseSword.name);
+
+            Destroy(baseSword.gameObject);
+        }
+        WoodSword woodSword = WoodSword.Create<WoodSword>(transform.parent.parent, swordpath);
+
+    }
+
     void Update()
     {
         

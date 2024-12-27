@@ -11,10 +11,15 @@ public class MakeSword : MonoBehaviour
         Button button = GetComponent<Button>();
         button.onClick.AddListener(CreateSword);
     }
-    public string swordpath;
+    public string swordpath ;
     private void CreateSword()
     {
         swordpath = SingleTone<UIManager>.Instance.GetIndex();
+        if(swordpath == null)
+        {
+            swordpath = "1";
+        }
+        Debug.Log(swordpath);
         BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
         if (baseSword != null)
         {

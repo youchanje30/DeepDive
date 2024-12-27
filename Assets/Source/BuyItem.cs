@@ -12,6 +12,7 @@ public class BuyItem : MonoBehaviour
         Button button = GetComponent<Button>();
         button.onClick.AddListener(BuyItems);
         tmp = GetComponentInChildren<TMP_Text>();
+        Reroll();
     }
     void Update()
     {
@@ -40,5 +41,10 @@ public class BuyItem : MonoBehaviour
     {
         itemcnt = 0;
         tmp.text = itemcnt.ToString();
+        ID = 8 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 64 + 1)));
+    }
+    public int GetID()
+    {
+        return ID;
     }
 }

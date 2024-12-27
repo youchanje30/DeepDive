@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoobHero : HeroBase
+public class TrashSword : BaseSword
 {
     void Awake()
     {
-        survive_rate = 30f;
+        
     }
 }

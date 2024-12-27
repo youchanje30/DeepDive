@@ -5,11 +5,12 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : SingleTone<GameManager>
 {
     #region is shoud be removed
-
+    public GameObject morning;
     public Slider bar;
     void Update()
     {
@@ -19,13 +20,25 @@ public class GameManager : SingleTone<GameManager>
 
 
 
-
+    
     private bool is_night;
 
     [SerializeField] private int monsters;
     [SerializeField] private int max_monsters;
 
 
+    [Header("Shop Data")]
+    #region About Shop Datas
+    private BaseSword sword_data;
+    private HeroBase cur_hero;
+    public Sprite[] imgs;
+    [SerializeField] Image hero_Image;
+    [SerializeField] TMP_Text hero_Text;
+    #endregion
+    [Space(10)]
+
+
+    [Header("Hero Data")]
     #region About Hero Datas
     public Queue<HeroBase> heros = new Queue<HeroBase>(); // BaseHero
     public int hero_increase_day;
@@ -41,19 +54,15 @@ public class GameManager : SingleTone<GameManager>
         is_night = true;
         monsters = 10;
         AddRandomHero();
+        ChangeTime();
     }
 
     public void ChangeTime()
     {
         is_night = !is_night;
+        Debug.Log(heros.Count);
 
-
-        int cnt = heros.Count;
-        while(cnt-->0)
-        {
-            Debug.Log("Hero is Here");
-        }
-
+        morning.SetActive(!is_night);
         if (is_night)
         {
             Combat();
@@ -65,6 +74,7 @@ public class GameManager : SingleTone<GameManager>
         {
             cur_day++;
             ComeNewHero();
+            // ComeHeroToGetWeapon();
             OpenSell();
         }
     }
@@ -82,12 +92,19 @@ public class GameManager : SingleTone<GameManager>
         AddRandomHero();
     }
 
-    private void ComeHero()
+    public void AddNeedSword(HeroBase hero)
     {
-        while(need_weapon_heros.Count > 0)
+        need_weapon_heros.Enqueue(hero);
+    }
+
+    private void ComeHeroToGetWeapon()
+    {
+        if(need_weapon_heros.Count > 0)
         {
             var need_hero = need_weapon_heros.Dequeue();
-            // plz Make!
+            SetImage(need_hero);
+            cur_hero = need_hero;
+            Debug.Log(need_hero);
         }
     }
 
@@ -95,6 +112,7 @@ public class GameManager : SingleTone<GameManager>
     {
         var hero = GetHero();
         AddHero(hero);
+        AddNeedSword(hero);
     }
 
     public void AddHero(HeroBase hero)
@@ -102,10 +120,15 @@ public class GameManager : SingleTone<GameManager>
         heros.Enqueue(hero);
     }
 
+    public GameObject sdfsdf;
     private HeroBase GetHero()
     {
         GameObject obj = new GameObject("noob");
         HeroBase hero = obj.AddComponent<NoobHero>();
+        GameObject sword = Instantiate(sdfsdf);
+        hero.SetSword(sword.GetComponent<BaseSword>());
+        hero.sprite = imgs[UnityEngine.Random.Range(0, imgs.Length)];
+        hero.text = "Hug Me Please";
         return hero;
     }
     #endregion
@@ -173,12 +196,39 @@ public class GameManager : SingleTone<GameManager>
     {
         /*
         ChangeView()
-        
         Come_Hero()
-
+        
         ChangeTime()
         */
+        Debug.Log(need_weapon_heros.Count);
+        CheckRemainWeaponNeedHero();
     }
+    public void SetWeaponHero()
+    {
+        if(cur_hero == null)
+            Debug.Log("Something Wrong");
+            Debug.Log("It Shoudn't be Null");
+            return;
+        
+        // It need Change;
+        GameObject sword = Instantiate(sdfsdf);
+        sword_data = sword.GetComponent<BaseSword>();
+        cur_hero.SetSword(sword_data);
+    }
+
+    public void CheckRemainWeaponNeedHero()    
+    {
+        if(need_weapon_heros.Count > 0)
+        {
+            var need_hero = need_weapon_heros.Dequeue();
+            SetImage(need_hero);
+        }
+        else
+        {
+            SetImage(null);
+        }
+    }
+
 
     public void OpenShop()
     {
@@ -190,6 +240,15 @@ public class GameManager : SingleTone<GameManager>
         */
     }
 
+
+
+    #region About Shop Process
+    void SetImage(HeroBase hero)
+    {
+        hero_Image.sprite = hero.sprite;
+        hero_Text.text = hero.text;
+    }
+    #endregion
 
     // void Update()
     // {

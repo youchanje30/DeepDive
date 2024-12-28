@@ -6,10 +6,22 @@ public class AllScene : MonoBehaviour
 {
     public Scenes[] Scenes;
     Scenes curScene;
-    public void NextScene()
+
+    void Start()
+    {
+        SetRandomScene();
+    }
+
+    public void SetRandomScene()
     {
         int Randoms = Random.Range(0, Scenes.Length);
         curScene = Scenes[Randoms];
+    }
+
+
+    public void NextScene()
+    {
+        SetRandomScene();
         curScene.gameObject.SetActive(true);
         //curScene.Begin(go);
     }

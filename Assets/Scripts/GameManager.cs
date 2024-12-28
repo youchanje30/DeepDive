@@ -27,28 +27,28 @@ public class GameManager : SingleTone<GameManager>
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (is_night) return;
-            if (isTalking) return;
-            if (isMaking) return;
+            if (cutscene.IsWork() || is_night || isTalking || isMaking) return;
 
             if (survived_heros.Count == 0 && !isWaiting)
                 ChangeTime();
             else
             {
-                // cutscene.Black
+                
+                if (isThank)
+                {
+                    Debug.Log("2");
+                    CheckRemainWeaponNeedHero();
+                    isThank = false;
+                    return;
+                }
                 if (isBreak)
                 {
                     cutscene.NextScene();
-                    // OpenSmithy();
                 }
                 else
                 {
+                    Debug.Log("1");
                     CheckRemainWeaponNeedHero();
-                }
-                if (isThank)
-                {
-                    OpenSell();
-                    isThank = false;
                 }
             }
         }
@@ -63,7 +63,6 @@ public class GameManager : SingleTone<GameManager>
         List<HeroBase> heroBases = new List<HeroBase>();
         while (survived_heros.Count > 0)
         {
-
             heroBases.Add(survived_heros.Dequeue());
         }
         if (heroBases.Count > 0)
@@ -75,6 +74,29 @@ public class GameManager : SingleTone<GameManager>
 
     }
     #endregion
+
+    public void ViewChange()
+    {
+        Debug.Log("I Did");
+        if(smithy.activeSelf)
+        {
+            CloseSmithy();
+        }
+        else
+        {
+            OpenSmithy();
+        }
+    }
+
+    public void CloseSmithy()
+    {
+        smithy.gameObject.SetActive(false);
+        anvilBG.SetActive(false);
+        morning.SetActive(true);
+        isMaking = false;
+
+    }
+
     public void OpenSmithy()
     {
         smithy.gameObject.SetActive(true);
@@ -237,7 +259,7 @@ public class GameManager : SingleTone<GameManager>
             shop.SetActive(false);
             cur_day++;
             ComeNewHero();
-            OpenSell();
+            CheckRemainWeaponNeedHero();
         }
     }
 
@@ -430,19 +452,20 @@ public class GameManager : SingleTone<GameManager>
     #endregion
 
 
-    public void OpenSell()
-    {
-        /*
-        ChangeView()
-        Come_Hero()
+    // public void OpenSell()
+    // {
+    //     /*
+    //     ChangeView()
+    //     Come_Hero()
         
-        ChangeTime()
-        */
-        //
-        CheckRemainWeaponNeedHero();
-    }
+    //     ChangeTime()
+    //     */
+    //     //
+    //     CheckRemainWeaponNeedHero();
+    // }
     public void SetWeaponHero()
     {
+        cutscene.NextScene();
         if (cur_hero == null)
         {
             Debug.Log("Something Wrong");
@@ -454,11 +477,13 @@ public class GameManager : SingleTone<GameManager>
         if (tempinfo != null)
         {
             cur_hero.SetSword(tempinfo);
+            isBreak = false;
         }
         else
         {
             Debug.Log("it's Bug. Report to Programmer");
         }
+
     }
 
     SwordInfo tempinfo;
@@ -575,10 +600,6 @@ public class GameManager : SingleTone<GameManager>
     public void ThankYou()
     {
         SingleTone<UIManager>.Instance.ReZero();
-        anvilBG.SetActive(false);
-        smithy.gameObject.SetActive(false);
-        morning.SetActive(true);
-        isMaking = false;
         isThank = true;
         SetText("고마워요! 다음에봐요 공주님");
     }
@@ -605,7 +626,10 @@ public class GameManager : SingleTone<GameManager>
     public void SetToolTip(string name)
     {
         int i = int.Parse(name);
-        SingleTone<TooltipManager>.Instance.SetText(materialData.nums[i], textOfID[i]);
+        if(i==8)
+            SingleTone<TooltipManager>.Instance.SetText(materialData.coins, "코인");
+        else
+            SingleTone<TooltipManager>.Instance.SetText(materialData.nums[i], textOfID[i]);
     }
 
     public void SetWeaponToolTip(string name)
@@ -620,7 +644,7 @@ public class GameManager : SingleTone<GameManager>
             {
                 // i == item, id == material
                 String str = GetTextOfID(id) + " " + itemDatas[i].data[id].ToString();
-                Debug.Log(str);
+                // Debug.Log(str);
                 strings.Add(str);
             }
         }

@@ -18,6 +18,7 @@ public class FocusInFace : Scenes
     }
     void FocusFaceIn()
     {
+        DOTween.Kill(this);
         isEnd = true;
 
         transform.DOScale(1, 2).OnComplete(() =>
@@ -28,7 +29,9 @@ public class FocusInFace : Scenes
     void FocusIn()
     {
         img.GetComponent<RectTransform>().sizeDelta = Vector3.zero;
-        SingleTone<GameManager>.Instance.OpenSmithy();
+        
+        SingleTone<GameManager>.Instance.ViewChange();
+        
         Invoke("FocusFaceOut", 0.5f);
 
     }

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +15,11 @@ public class CutSceneShutter : Scenes
     }
     void ShutterDown()
     {
+        DOTween.Kill(this);
         isEnd = true;
         img.transform.DOLocalMoveY(0, 1.2f).SetEase(Ease.InOutQuart).OnComplete(() => 
         { 
-            SingleTone<GameManager>.Instance.OpenSmithy();    
+            SingleTone<GameManager>.Instance.ViewChange();    
             Invoke("ShutterUp",0.5f); 
         });
 

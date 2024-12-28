@@ -44,7 +44,7 @@ public abstract class BaseSword : MonoBehaviour
             UpgradeEnd = true;
             SwordInfo swordInfo = new SwordInfo(AtkDamge, SurvivalRate, DestroyRate);
             SingleTone<GameManager>.Instance.GetSword(swordInfo);
-            SingleTone<UIManager>.Instance.UpgrageFinish();
+            SingleTone<UIManager>.Instance.UpgrageFinish(this);
             return;
         }
         SingleTone<AudioManager>.Instance.PlaySfx(Sfx.hammer);

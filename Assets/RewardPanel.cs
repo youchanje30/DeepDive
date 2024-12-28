@@ -29,10 +29,10 @@ public class RewardPanel : MonoBehaviour
             texts[i++].text = item.Value.ToString();
         }
         
-        for (; i < 3; ++i)
-        {
-            images[i].gameObject.SetActive(false);
-        }
+        // for (; i < 3; ++i)
+        // {
+        //     images[i].gameObject.SetActive(false);
+        // }
         
     }
 }

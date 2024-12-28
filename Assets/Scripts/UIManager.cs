@@ -28,16 +28,16 @@ public class UIManager : SingleTone<UIManager>
         return clickname;
     }
 
-    public void UpgrageFinish()
+    public void UpgrageFinish(BaseSword baseSword)
     {
-        BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
+        SingleTone<GameManager>.Instance.SetWeaponHero();
+        SingleTone<GameManager>.Instance.ThankYou();
         if (baseSword != null)
         {
 
             Destroy(baseSword.gameObject);
         }
-        SingleTone<GameManager>.Instance.SetWeaponHero();
-        SingleTone<GameManager>.Instance.ThankYou();
+        
         
     }
 }

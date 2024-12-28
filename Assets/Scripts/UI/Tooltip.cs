@@ -17,4 +17,11 @@ public class Tooltip : MonoBehaviour
         need_info.text = cur;
         cur_info.text = need;
     }
+
+    public void SetupSwordTooltip(string a, string b = "", string c = "")
+    {
+        Objname.text = a;
+        need_info.text = b;
+        cur_info.text = c;
+    }
 }

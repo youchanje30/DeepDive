@@ -9,11 +9,16 @@ public class TooltipManager : SingleTone<TooltipManager>
     private void Update()
     {
         tooltip.GetComponent<RectTransform>().SetAsLastSibling();
-        tooltip.transform.position = new Vector3(Input.mousePosition.x - 140, Input.mousePosition.y + 160);
+        tooltip.transform.position = new Vector3(Input.mousePosition.x - 140, Input.mousePosition.y + (Input.mousePosition.y > 500 ? -160 : 160));
     }
 
     public void SetText(int val, string name)
     {
         tooltip.SetupTooltip(name, val.ToString());
+    }
+
+    public void SetSwordText(string a, string b = "", string c = "")
+    {
+        tooltip.SetupSwordTooltip(a, b, c);
     }
 }

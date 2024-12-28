@@ -572,4 +572,24 @@ public class GameManager : SingleTone<GameManager>
         int i = int.Parse(name);
         SingleTone<TooltipManager>.Instance.SetText(materialData.nums[i], textOfID[i]);
     }
+
+    public void SetWeaponToolTip(string name)
+    {
+        int i = int.Parse(name);
+
+        List<String> strings = new List<string>();
+
+        for (int id = 0; id < 8; id++)
+        {
+            if (itemDatas[i].data[id] > 0)
+            {
+                // i == item, id == material
+                String str = GetTextOfID(id) + " " + itemDatas[i].data[id].ToString();
+                Debug.Log(str);
+                strings.Add(str);
+            }
+        }
+
+        SingleTone<TooltipManager>.Instance.SetSwordText((strings.Count > 0 ? strings[0] : ""), (strings.Count > 1 ? strings[1] : ""), (strings.Count > 2 ? strings[2] : ""));
+    }
 }

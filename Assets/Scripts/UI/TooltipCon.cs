@@ -7,9 +7,14 @@ public class TooltipCon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     public Tooltip tooltip;
 
+    public bool is_material;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SingleTone<GameManager>.Instance.SetToolTip(this.name);
+        if (is_material)
+            SingleTone<GameManager>.Instance.SetToolTip(this.name);
+        else
+            SingleTone<GameManager>.Instance.SetWeaponToolTip(this.name);
         tooltip.gameObject.SetActive(true);
         
     }

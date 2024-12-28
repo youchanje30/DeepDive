@@ -34,9 +34,21 @@ public abstract class HeroBase : MonoBehaviour
             Asprites.Add(sprites);
         }
     }
+    public void Mawang()
+    {
+        SetSprites(Resources.Load<Sprite>("Mawang/Mawang_body_1"));
+    }
     public Sprite GetSprite(string folderName)
     {
+        if (Allsprites.ContainsKey(folderName))
+        {
+
         return Allsprites[folderName];
+        }
+        else
+        {
+            return null;
+        }
     }
     private string getfolderName(Sprite sprite)
     {

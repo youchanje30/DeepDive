@@ -83,7 +83,6 @@ public class GameManager : SingleTone<GameManager>
     {
         Weddingd.gameObject.SetActive(true);
         WeddingHero(skin);
-
     }
     private void WeddingHero(HeroBase hero)
     {
@@ -95,10 +94,16 @@ public class GameManager : SingleTone<GameManager>
             {
                 string childname = child.name;
                 Sprite randomSprite = hero.GetSprite(childname);
-                if (randomSprite == null) continue;
+                if (randomSprite == null)
+                {
+                    child.gameObject.SetActive(false);
+                    continue;
+                }
                 Image transimage = child.GetComponent<Image>();
                 if (transimage != null)
                 {
+                    child.gameObject.SetActive(true);
+
                     transimage.sprite = randomSprite;
                     transimage.SetNativeSize();
                         GameObject princess = GameObject.Find("wedding/Ending Panel/Character1/body");
@@ -267,6 +272,7 @@ public class GameManager : SingleTone<GameManager>
     public GameObject shop;
     void Start()
     {
+        Weddingd.gameObject.SetActive(false);
         smithy.gameObject.SetActive(false);
         shop.gameObject.SetActive(false);
         bar.maxValue = max_monsters;
@@ -490,6 +496,13 @@ public class GameManager : SingleTone<GameManager>
     {
         // 단순히 2배 늘어남
         monsters = Mathf.FloorToInt(multiple_monsters * monsters) + increase_monsters;
+        if(monsters >= max_monsters)
+        {
+            GameObject go = new GameObject("go");
+            HeroBase Mawang = go.AddComponent<NoobHero>();
+            Mawang.Mawang();
+            Wedding(Mawang);
+        }
     }
     #endregion
 

@@ -46,7 +46,7 @@ public class BuyItem : MonoBehaviour
     {
         itemcnt = 0;
         tmp.text = itemcnt.ToString();
-        ID = 8 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 64 + 1)));
+        ID = 7 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 63 + 1)));
     }
     public int GetID()
     {

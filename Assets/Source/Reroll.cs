@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class Reroll : MonoBehaviour
 {
     public BuyItem[] items;
+    public TMP_Text[] texts;
+
     void Start()
     {
         Button button = GetComponent<Button>();
@@ -35,8 +39,17 @@ public class Reroll : MonoBehaviour
                 }
                 break;
             }
+            texts[i].text = GetTextOfID(items[i].GetID());
             idList.Add(ID);
+            
         }
     }
 
+
+
+    public String[] textOfID;
+    private string GetTextOfID(int id)
+    {
+        return textOfID[id];
+    }
 }

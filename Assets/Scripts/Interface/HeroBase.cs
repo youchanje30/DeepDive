@@ -89,7 +89,8 @@ public abstract class HeroBase : MonoBehaviour
         // if Sword break, Add Need Sword
         if (UnityEngine.Random.Range(0f, 100f) < 10)//sword.GetBreakRate())
         {
-            SingleTone<GameManager>.Instance.AddNeedSword(this);
+            sword = null;
+            // SingleTone<GameManager>.Instance.AddNeedSword(this);
             Debug.Log("Need !");
         }
     }

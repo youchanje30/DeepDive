@@ -17,6 +17,12 @@ public class UIManager : SingleTone<UIManager>
             obj.CheckID(clickname);
         }
     }
+
+    public void ReZero()
+    {
+        obj.Clear();
+    }
+
     public string GetIndex()
     {
         return clickname;

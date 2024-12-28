@@ -57,6 +57,7 @@ public class GameManager : SingleTone<GameManager>
     {
         smithy.gameObject.SetActive(true);
         anvilBG.SetActive(true);
+        morning.SetActive(false);
         isMaking = true;
     }
     public Scenes cutscene;
@@ -233,7 +234,7 @@ public class GameManager : SingleTone<GameManager>
 
     public void AddNeedSword(HeroBase hero)
     {
-        survived_heros.Enqueue(hero);
+        // survived_heros.Enqueue(hero);
     }
 
 
@@ -241,7 +242,8 @@ public class GameManager : SingleTone<GameManager>
     {
         var hero = GetHero();
         AddHero(hero);
-        AddNeedSword(hero);
+        survived_heros.Enqueue(hero);
+        // AddNeedSword(hero);
     }
 
     public void AddHero(HeroBase hero)
@@ -459,7 +461,9 @@ public class GameManager : SingleTone<GameManager>
             if(hero.earn_coins > 0)
             {
                 reward_Panel.SetActive(true);
+                reward_Panel.GetComponent<RewardPanel>().Setting(hero.earn_coins, hero.earn_data);
                 ViewGetMaterials();
+
                 GetMaterials(hero.earn_coins, hero.earn_data);
             }
                 
@@ -547,7 +551,10 @@ public class GameManager : SingleTone<GameManager>
     }
     public void ThankYou()
     {
+        SingleTone<UIManager>.Instance.ReZero();
         anvilBG.SetActive(false);
+        smithy.gameObject.SetActive(false);
+        morning.SetActive(true);
         isMaking = false;
         isThank = true;
         SetText("고마워요! 다음에봐요 공주님"); 
@@ -567,6 +574,11 @@ public class GameManager : SingleTone<GameManager>
         return textOfID[id];
     }
 
+    public Sprite[] spriteOfID;
+    public Sprite GetSpriteOfID(int id)
+    {
+        return spriteOfID[id];
+    }
     public void SetToolTip(string name)
     {
         int i = int.Parse(name);

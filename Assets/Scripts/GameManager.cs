@@ -38,9 +38,7 @@ public class GameManager : SingleTone<GameManager>
                 // cutscene.Black
                 if(isBreak)
                 {
-                    smithy.gameObject.SetActive(true);
-                    anvilBG.SetActive(true);
-                    isMaking = true;
+                    OpenSmithy();
                 }
                 else
                 {
@@ -55,8 +53,13 @@ public class GameManager : SingleTone<GameManager>
         }
     }
     #endregion
-
-    public Cutscene cutscene;
+    public void OpenSmithy()
+    {
+        smithy.gameObject.SetActive(true);
+        anvilBG.SetActive(true);
+        isMaking = true;
+    }
+    public Scenes cutscene;
 
     
     private bool is_night;

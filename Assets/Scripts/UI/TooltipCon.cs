@@ -10,6 +10,8 @@ public class TooltipCon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         SingleTone<GameManager>.Instance.SetToolTip(this.name);
+        tooltip.gameObject.SetActive(true);
+        
     }
     public void OnPointerExit(PointerEventData eventData)
     {

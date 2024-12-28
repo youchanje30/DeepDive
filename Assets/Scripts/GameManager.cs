@@ -347,6 +347,11 @@ public class GameManager : SingleTone<GameManager>
     public void KillMonster(int val, HeroBase hero)
     {
         monsters -= val;
+        if (monsters <= 0)
+        {
+            monsters = 100;
+            Debug.Log("I Killed!" + hero.name + hero.sword.Damage.ToString());
+        }
         int item_cnt = 0;
         while (val-->0)
         {

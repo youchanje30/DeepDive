@@ -39,6 +39,7 @@ public class GameManager : SingleTone<GameManager>
                 if(isBreak)
                 {
                     smithy.gameObject.SetActive(true);
+                    anvilBG.SetActive(true);
                     isMaking = true;
                 }
                 else
@@ -244,7 +245,7 @@ public class GameManager : SingleTone<GameManager>
                 if (transimage != null)
                 {
                     transimage.sprite = randomSprite;
-                    // Debug.Log("바꿈");
+                    transimage.SetNativeSize();
                 }
             }
         }
@@ -256,7 +257,7 @@ public class GameManager : SingleTone<GameManager>
 
         GameObject parentObj = GameObject.Find("Main/BgCanvas/Character");
 
-        var path = UnityEngine.Random.Range(1, 10+1) >= 1 ? "Handsome/" : "Character/";
+        var path = UnityEngine.Random.Range(1, 10+1) <= 3 ? "Handsome/" : "Character/";
 
         if (parentObj != null)
         {
@@ -283,7 +284,8 @@ public class GameManager : SingleTone<GameManager>
 
                     transimg.sprite = RandomSprite;
                     // Handsome guys size diffrent
-                    transimg.SetNativeSize();
+                    // transimg.SetNativeSize();
+                    transimg.gameObject.GetComponent<Image>().SetNativeSize();
                     hero.SetSprites(transimg.sprite);
                 }
             }
@@ -506,11 +508,13 @@ public class GameManager : SingleTone<GameManager>
 
 
 
+    public GameObject anvilBG;
     #region About Chat
     public void TryText()
     {
         talkingPanel.SetActive(true);
         isTalking = true;
+        
         SetText("Hug Me Please");
     }
 
@@ -521,6 +525,7 @@ public class GameManager : SingleTone<GameManager>
     }
     public void ThankYou()
     {
+        anvilBG.SetActive(false);
         isMaking = false;
         isThank = true;
         SetText("Thank you! I will be back."); 

@@ -38,7 +38,8 @@ public class GameManager : SingleTone<GameManager>
                 // cutscene.Black
                 if(isBreak)
                 {
-                    OpenSmithy();
+                    cutscene.gameObject.SetActive(true);
+                    // OpenSmithy();
                 }
                 else
                 {

@@ -15,6 +15,14 @@ public class Reroll : MonoBehaviour
         Button button = GetComponent<Button>();
         button.onClick.AddListener(Reset);
     }
+    private void OnEnable()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            items[i].InitCnt();
+        }
+        Reset();
+    }
     private void Reset()
     {
         // Audio
@@ -25,19 +33,24 @@ public class Reroll : MonoBehaviour
         {
             items[i].Reroll();
         }
-        for(int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
             int ID = items[i].GetID();
             if (idList.Contains(ID))
             {
+                int attempts = 0; 
+                int maxAttempts = 100;
+
                 Debug.Log($"Duplicate ID found :{ID}");
                 while (idList.Contains(ID))
-                {
-                    Debug.Log("���ư�����-----" + ID);
+                {if(attempts >= maxAttempts)
+                    {
+                        break;
+                    }
                     items[i].Reroll();
                     ID = items[i].GetID();
+                    attempts++;
                 }
-                break;
             }
             texts[i].text = GetTextOfID(items[i].GetID());
             idList.Add(ID);

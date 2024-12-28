@@ -487,7 +487,7 @@ public class GameManager : SingleTone<GameManager>
     private void ViewGetMaterials()
     {
         isTalking = true;
-        DOTween.To(()=> "", x=>reward_Text.text = x, "I Got It!", 0.5f).OnComplete(() => isTalking = false);
+        DOTween.To(()=> "", x=>reward_Text.text = x, "당신을 위한 선물이에요", 0.5f).OnComplete(() => isTalking = false);
     }
 
     public void OpenShop()
@@ -522,9 +522,16 @@ public class GameManager : SingleTone<GameManager>
         talkingPanel.SetActive(true);
         isTalking = true;
         
-        SetText("Hug Me Please");
+        SetText(RandomString());
     }
 
+    public String[] helloText;
+
+    public String RandomString()
+    {
+        return helloText[UnityEngine.Random.Range(0, helloText.Length)];
+
+    }
 
     public void GetText(HeroBase hero)
     {
@@ -535,13 +542,13 @@ public class GameManager : SingleTone<GameManager>
         anvilBG.SetActive(false);
         isMaking = false;
         isThank = true;
-        SetText("Thank you! I will be back."); 
+        SetText("고마워요! 다음에봐요 공주님"); 
     }
 
     public void SetText(String text)
     {
         isTalking = true;
-        DOTween.To(()=> "", x=>hero_Text.text = x, text, 0.5f).OnComplete(() => isTalking = false);
+        DOTween.To(()=> "", x=>hero_Text.text = x, text, 1f).OnComplete(() => isTalking = false);
     }
     #endregion
 }

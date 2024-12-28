@@ -32,13 +32,11 @@ public class GetSwordMaterial : MonoBehaviour
 
     public void AddData(int data_val, int nums, int id = 0)
     {
-        // Debug.Log($"{data_val} , {}");
-        // material's id need data val, i have nums
         var ob = Instantiate(obj);
         var text = obj.GetComponentInChildren<TMP_Text>();
         UnityEngine.UI.Image icon = obj.GetComponentInChildren<UnityEngine.UI.Image>();
         icon.sprite = sprites[id];
-        text.text = data_val.ToString() + " / " + nums.ToString();
+        text.text = nums.ToString() + " / " + data_val.ToString();
         
         ob.GetComponent<RectTransform>().SetParent(this.GetComponent<RectTransform>());
         ob.transform.localScale = Vector3.one;

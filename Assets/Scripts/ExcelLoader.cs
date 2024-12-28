@@ -34,7 +34,6 @@ public class ExcelLoader : MonoBehaviour
 				item_data[id] = int.Parse(item.Value.ToString());
 			}
 			SingleTone<GameManager>.Instance.MakeItemList(i, item_data);
-			Debug.Log(i);
 		}
 	}
 }

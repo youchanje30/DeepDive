@@ -4,19 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class Cutscene : MonoBehaviour
+public class Cutscene : CutScenes
 {
     public Image img;
 
     float a = 0;
-    private void Start() {
-        Black();
-    }
+
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    private void Update()
+    public void Run()
+    {
+        img = GameObject.Find("Production/Panel").GetComponent<Image>();
+        Debug.Log("ÀÛµ¿Áß?");
+        Black();
+
+    }
+    public void Update()
     {
         img.color = new Color(img.color.r, img.color.g, img.color.b, a);
     }
@@ -33,4 +38,8 @@ public class Cutscene : MonoBehaviour
     {
         DOTween.To(() => a, x=> a = x, 0f, 0.5f); // .OnComplete(() => Black());
     }
+
+
+
+
 }

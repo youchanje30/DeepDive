@@ -24,7 +24,6 @@ public abstract class BaseSword : MonoBehaviour
     public void Upgrade(float value)
     {
         // Audio
-        SingleTone<AudioManager>.Instance.PlaySfx(Sfx.hammer);
 
         if(UpgradeCnt >= UpgradeTarget.Length)
         {
@@ -36,6 +35,7 @@ public abstract class BaseSword : MonoBehaviour
 
             return;
         }
+        SingleTone<AudioManager>.Instance.PlaySfx(Sfx.hammer);
         AtkDamge += value;
         UpgradeCnt++;
     }

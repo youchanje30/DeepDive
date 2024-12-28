@@ -44,3 +44,6 @@ TagManager:
   - name: New Layer 1
     uniqueID: 3697488093
     locked: 0
+  - name: sword
+    uniqueID: 324236151
+    locked: 0

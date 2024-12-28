@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4a4ba6cd0ba6c034292ef779ae313eb2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ecf8b38247f4334418cb20157c9193d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: -2, y: 0}
   - {x: -4, y: 0}
-  AtkDamge: 7
-  maxValue: 5
+  AtkDamge: 10
+  maxValue: 7
   SurvivalRate: 30
   DestroyRate: 10
   UpgradeEnd: 0

@@ -22,7 +22,7 @@ public class ExcelLoader : MonoBehaviour
 		List<Dictionary<string, object>> name_data = CSVReader.Read("item_name");
 		List<Dictionary<string, object>> data = CSVReader.Read("item_recipe");
 
-		
+		Debug.Log("data count is : " + data.Count.ToString());
 		for (int i = 0; i < data.Count; i++)
 		{
 			Dictionary<int, int> item_data = new Dictionary<int, int>();
@@ -34,6 +34,7 @@ public class ExcelLoader : MonoBehaviour
 				item_data[id] = int.Parse(item.Value.ToString());
 			}
 			SingleTone<GameManager>.Instance.MakeItemList(i, item_data);
+			Debug.Log(i);
 		}
 	}
 }

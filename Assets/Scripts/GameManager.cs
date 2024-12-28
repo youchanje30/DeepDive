@@ -255,6 +255,9 @@ public class GameManager : SingleTone<GameManager>
         HeroBase hero = obj.AddComponent<NoobHero>();
 
         GameObject parentObj = GameObject.Find("Main/BgCanvas/Character");
+
+        var path = UnityEngine.Random.Range(1, 10+1) >= 1 ? "Handsome/" : "Character/";
+
         if (parentObj != null)
         {
         parentObj.SetActive(true);
@@ -264,11 +267,11 @@ public class GameManager : SingleTone<GameManager>
                 // Debug.Log("자식찾는중...");
 
                 string childName = child.name;
-                Sprite[] sprites = Resources.LoadAll<Sprite>("Character/"+childName);
+                Sprite[] sprites = Resources.LoadAll<Sprite>(path+childName);
 
                 if(sprites == null|| sprites.Length == 0)
                 {
-                    // Debug.Log("폴더가 없거나 파일이 없음");
+                    Debug.Log("폴더가 없거나 파일이 없음");
 
                     continue;
                 }
@@ -279,6 +282,8 @@ public class GameManager : SingleTone<GameManager>
                     // Debug.Log("스프라이트 바꿈");
 
                     transimg.sprite = RandomSprite;
+                    // Handsome guys size diffrent
+                    transimg.SetNativeSize();
                     hero.SetSprites(transimg.sprite);
                 }
             }

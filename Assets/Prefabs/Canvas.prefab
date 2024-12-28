@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 7697232338269751593}
   - component: {fileID: 4666371311891584843}
   m_Layer: 5
-  m_Name: Image (11)
+  m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,8 +277,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -330,7 +330,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7697232338269751593}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1844289895843401208
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +356,7 @@ GameObject:
   - component: {fileID: 7670890945514774344}
   - component: {fileID: 5310653747207020787}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,8 +409,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -450,7 +462,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7670890945514774344}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2555504040209513666
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +488,7 @@ GameObject:
   - component: {fileID: 7447214621531623543}
   - component: {fileID: 4116387288635190855}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,8 +541,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -570,7 +594,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7447214621531623543}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3372333247070760127
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +620,7 @@ GameObject:
   - component: {fileID: 2015870369023574412}
   - component: {fileID: 3952618231789349129}
   m_Layer: 5
-  m_Name: Image (14)
+  m_Name: 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,8 +673,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -690,7 +726,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2015870369023574412}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3548047949848696339
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +752,7 @@ GameObject:
   - component: {fileID: 2220461067144397671}
   - component: {fileID: 6451862498038025079}
   m_Layer: 5
-  m_Name: Image (8)
+  m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,8 +805,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -810,7 +858,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2220461067144397671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3722717579962325680
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +884,7 @@ GameObject:
   - component: {fileID: 135549891435114045}
   - component: {fileID: 4192412838873963117}
   m_Layer: 5
-  m_Name: Image (7)
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -877,8 +937,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -930,7 +990,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 135549891435114045}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3749066559340026636
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +1015,7 @@ GameObject:
   - component: {fileID: 4935571242895327773}
   - component: {fileID: 1430148824880540123}
   - component: {fileID: 6585044287003856824}
+  - component: {fileID: 5976960759953699694}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1051,19 +1124,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1430148824880540123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 528cab617ddb76a479b27a17923b29e7, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &5976960759953699694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749066559340026636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4689c9c45857f9e4d9d4d9007d0845b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordpath: 
 --- !u!1 &3764766511633706985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1151,7 @@ GameObject:
   - component: {fileID: 7854786564976871747}
   - component: {fileID: 8950255646379757489}
   m_Layer: 5
-  m_Name: Image (9)
+  m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1130,8 +1204,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1183,7 +1257,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7854786564976871747}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3887706878218419089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 33ee32a96672ce04f9cbb4d92fa109bf, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1386,7 +1472,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 20}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &4624606435104530754
 CanvasRenderer:
@@ -1470,7 +1556,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1407346547696737476}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.35
+  m_Size: 0.6
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1488,7 +1574,7 @@ GameObject:
   - component: {fileID: 2058127168152218258}
   - component: {fileID: 5712316197321192068}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1541,8 +1627,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1594,7 +1680,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2058127168152218258}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6446271841420375380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,7 +1832,7 @@ GameObject:
   - component: {fileID: 2088027089649573912}
   - component: {fileID: 5867404508153148994}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1787,8 +1885,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1840,7 +1938,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2088027089649573912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6598386088596563364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,7 +2101,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 700, y: 100}
+  m_SizeDelta: {x: 1200, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3988998615126829645
 CanvasRenderer:
@@ -2074,7 +2184,7 @@ GameObject:
   - component: {fileID: 358160420061865698}
   - component: {fileID: 7652118090329845616}
   m_Layer: 5
-  m_Name: Image (10)
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2127,8 +2237,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2180,7 +2290,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 358160420061865698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7401558982768204911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,7 +2316,7 @@ GameObject:
   - component: {fileID: 5340746488419996030}
   - component: {fileID: 6196199154636238725}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2247,8 +2369,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2300,7 +2422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5340746488419996030}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7412239187406218235
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,7 +2448,7 @@ GameObject:
   - component: {fileID: 8037955003382891859}
   - component: {fileID: 5391438961629097593}
   m_Layer: 5
-  m_Name: Image
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2367,8 +2501,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2420,7 +2554,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8037955003382891859}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7635693807666433433
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,7 +2580,7 @@ GameObject:
   - component: {fileID: 4055878611345739374}
   - component: {fileID: 479709286942567904}
   m_Layer: 5
-  m_Name: Image (12)
+  m_Name: 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2487,8 +2633,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2540,7 +2686,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4055878611345739374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7751323597489339202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,7 +2796,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &6191516597111504198
 MonoBehaviour:
@@ -2693,7 +2851,7 @@ GameObject:
   - component: {fileID: 918654106431899679}
   - component: {fileID: 1945505884245284700}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2746,8 +2904,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2799,7 +2957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 918654106431899679}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8687475799531733300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,7 +2983,7 @@ GameObject:
   - component: {fileID: 2347856198243442633}
   - component: {fileID: 6268997176383574559}
   m_Layer: 5
-  m_Name: Image (13)
+  m_Name: 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2866,8 +3036,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f22ea881567b374cb3229311582e3b5, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 22262dfb4ad749849ad2e79cd2665dcb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2919,4 +3089,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2347856198243442633}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -125,6 +125,19 @@ public class GameManager : SingleTone<GameManager>
         return materialData.nums[id] >= val;
     }
 
+    public void CheckData(int id, GetSwordMaterial obj)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if(itemDatas[id].data[i] > 0)
+            {
+                obj.AddData(itemDatas[id].data[i], materialData.nums[i], i);
+            }
+        }
+        
+    }
+
+
     public void BuySword(int id)
     {
         EarnCoins(prices[id]);
@@ -317,14 +330,6 @@ public class GameManager : SingleTone<GameManager>
         if (monsters >= max_monsters)
         {
             MonsterEnd();
-        }
-    }
-
-    private void CheckMonsterDead(int hero)
-    {
-        if (monsters <= 0)
-        {
-            HeroEnd(hero);
         }
     }
 

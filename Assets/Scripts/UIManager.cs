@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : SingleTone<UIManager>
 {
+    public GetSwordMaterial obj;
     string clickname;
     public void SetIndex()
     {
@@ -13,6 +14,7 @@ public class UIManager : SingleTone<UIManager>
         if(ClickedObj != null)
         {
             clickname = ClickedObj.name;
+            obj.SetSwordData(int.Parse(clickname));
         }
     }
     public string GetIndex()

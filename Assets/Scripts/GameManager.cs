@@ -33,10 +33,8 @@ public class GameManager : SingleTone<GameManager>
                 ChangeTime();
             else
             {
-                
                 if (isThank)
                 {
-                    Debug.Log("2");
                     CheckRemainWeaponNeedHero();
                     isThank = false;
                     return;
@@ -52,29 +50,71 @@ public class GameManager : SingleTone<GameManager>
                 }
             }
         }
-        if (bar.value == bar.minValue)
-        {
-            Debug.Log("값 꽉참");
-            Winner();
-        }
+
     }
+    public GameObject Weddingd;
     public void Winner()
     {
         List<HeroBase> heroBases = new List<HeroBase>();
         while (survived_heros.Count > 0)
         {
             heroBases.Add(survived_heros.Dequeue());
+        Debug.Log("0.1");
+            Debug.Log(heroBases.Count);
         }
+        Debug.Log("0.2");
         if (heroBases.Count > 0)
         {
             int random = UnityEngine.Random.Range(0, heroBases.Count);
             HeroBase winner = heroBases[random];
-            Debug.Log(winner);
-        }
+            if(winner != null)
+            {
+            Wedding(winner);
 
+            }
+            else
+            {
+                Debug.LogError("winner없음");
+            }
+        }
     }
     #endregion
+    public void Wedding(HeroBase skin)
+    {
+        Weddingd.gameObject.SetActive(true);
+        WeddingHero(skin);
 
+    }
+    private void WeddingHero(HeroBase hero)
+    {
+        GameObject parentObj = GameObject.Find("wedding/Ending Panel/Character3");
+        if (parentObj != null)
+        {
+            parentObj.SetActive(true);
+            foreach (Transform child in parentObj.transform)
+            {
+                string childname = child.name;
+                Sprite randomSprite = hero.GetSprite(childname);
+                if (randomSprite == null) continue;
+                Image transimage = child.GetComponent<Image>();
+                if (transimage != null)
+                {
+                    transimage.sprite = randomSprite;
+                    transimage.SetNativeSize();
+                        GameObject princess = GameObject.Find("wedding/Ending Panel/Character1/body");
+                    if (transimage.sprite.name.ToLower().Contains("Handsome"))
+                    {
+                        princess.GetComponent<Image>().sprite = Resources.Load<Sprite>("hime_yes_dummy");
+                    }
+                    else
+                    {
+                        princess.GetComponent<Image>().sprite = Resources.Load<Sprite>("hime_no_dummy");
+
+                    }
+                }
+            }
+        }
+    }
     public void ViewChange()
     {
         Debug.Log("I Did");
@@ -373,9 +413,6 @@ public class GameManager : SingleTone<GameManager>
             cur_hero.Battle();
         }
     }
-
-
-
     private void CheckClear()
     {
         if (monsters >= max_monsters)
@@ -393,11 +430,17 @@ public class GameManager : SingleTone<GameManager>
     public void KillMonster(int val, HeroBase hero)
     {
         monsters -= val;
+        Debug.Log(monsters + "몹 수");
+
         if (monsters <= 0)
         {
-            monsters = 100;
+            survived_heros.Enqueue(hero);
+            Winner();
+            return;
+            //monsters = 100;
             Debug.Log("I Killed!" + hero.name + hero.sword.Damage.ToString());
         }
+
         int item_cnt = 0;
         while (val-- > 0)
         {
@@ -418,7 +461,6 @@ public class GameManager : SingleTone<GameManager>
 
     private void MonsterEnd()
     {
-        // view wedding
         Debug.Log("You Marry Monster");
     }
 
@@ -451,18 +493,6 @@ public class GameManager : SingleTone<GameManager>
     }
     #endregion
 
-
-    // public void OpenSell()
-    // {
-    //     /*
-    //     ChangeView()
-    //     Come_Hero()
-        
-    //     ChangeTime()
-    //     */
-    //     //
-    //     CheckRemainWeaponNeedHero();
-    // }
     public void SetWeaponHero()
     {
         cutscene.NextScene();
@@ -472,8 +502,6 @@ public class GameManager : SingleTone<GameManager>
             Debug.Log("It Shoudn't be Null");
             return;
         }
-
-
         if (tempinfo != null)
         {
             cur_hero.SetSword(tempinfo);

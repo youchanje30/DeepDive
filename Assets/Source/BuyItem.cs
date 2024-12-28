@@ -77,7 +77,6 @@ public class BuyItem : MonoBehaviour
             if (tmp != null)
             {
                 tmp.text = itemcnt.ToString();
-                Debug.Log("ÀÚ");
             }
             ID = 7 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 63 + 1)));
         }

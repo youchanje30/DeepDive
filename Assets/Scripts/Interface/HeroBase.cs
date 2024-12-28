@@ -27,14 +27,12 @@ public abstract class HeroBase : MonoBehaviour
         if (sprites == null)
             return;
 
-
         string folderName = getfolderName(sprites);
         if (!string.IsNullOrEmpty(folderName) && !Allsprites.ContainsKey(folderName))
         {
             Allsprites[folderName] = sprites;
             Asprites.Add(sprites);
         }
-
     }
     public Sprite GetSprite(string folderName)
     {

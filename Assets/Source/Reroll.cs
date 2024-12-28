@@ -15,6 +15,11 @@ public class Reroll : MonoBehaviour
         Button button = GetComponent<Button>();
         button.onClick.AddListener(Reset);
     }
+    private void OnEnable()
+    {
+        Debug.Log("리로?");
+        Reset();
+    }
     private void Reset()
     {
         // Audio
@@ -23,10 +28,13 @@ public class Reroll : MonoBehaviour
         List<int> idList = new List<int>();
         for (int i = 0; i < items.Length; i++)
         {
+            Debug.Log("확인");
             items[i].Reroll();
+            Debug.Log("aaa확인");
         }
-        for(int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
+            Debug.Log("확인aan");
             int ID = items[i].GetID();
             if (idList.Contains(ID))
             {
@@ -37,8 +45,8 @@ public class Reroll : MonoBehaviour
                     items[i].Reroll();
                     ID = items[i].GetID();
                 }
-                break;
             }
+            Debug.Log("확인nn");
             texts[i].text = GetTextOfID(items[i].GetID());
             idList.Add(ID);
             

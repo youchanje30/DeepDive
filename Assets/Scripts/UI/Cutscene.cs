@@ -31,7 +31,7 @@ public class Cutscene : Scenes
 
         DOTween.To(() => a, x=> a = x, 1f, 2f).OnComplete(() =>
         {
-            SingleTone<GameManager>.Instance.OpenSmithy();
+            SingleTone<GameManager>.Instance. ViewChange();
             White();
         });
         

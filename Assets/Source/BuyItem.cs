@@ -6,8 +6,10 @@ public class BuyItem : MonoBehaviour
 {
     int itemcnt;
     public int ID;
-    TMP_Text tmp;
-    bool isbuy = false;
+    public TMP_Text tmp;
+    public bool isbuy = false;
+    public Image img;
+    TMP_Text buy;
     void Start()
     {
         Button button = GetComponent<Button>();
@@ -16,7 +18,8 @@ public class BuyItem : MonoBehaviour
     }
     private void Awake()
     {
-        tmp = GetComponentInChildren<TMP_Text>();
+        buy = GetComponentInChildren<TMP_Text>();
+        buy.text = "Buy";
 
     }
     private void OnEnable()
@@ -79,6 +82,7 @@ public class BuyItem : MonoBehaviour
                 tmp.text = itemcnt.ToString();
             }
             ID = 7 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 63 + 1)));
+            img.sprite = Resources.Load<Sprite>("Material/" + ID.ToString());
         }
     }
     public int GetID()

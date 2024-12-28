@@ -67,7 +67,6 @@ public abstract class HeroBase : MonoBehaviour
 
     public bool isDead()
     {
-        Debug.Log(survive_rate);
         if (sword == null)
         {
             Debug.Log("here is Null");
@@ -75,7 +74,7 @@ public abstract class HeroBase : MonoBehaviour
         }
 
 
-        return !(UnityEngine.Random.Range(0f, 100f) < sword.SurvivalRate);
+        return !(UnityEngine.Random.Range(0f, 100f) < sword.SurvivalRate + survive_rate);
     }
 
     public void Battle()

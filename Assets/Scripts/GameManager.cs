@@ -17,6 +17,8 @@ public class GameManager : SingleTone<GameManager>
     bool isMaking = false;
     bool isWaiting = false;
     public GameObject talkingPanel;
+    bool isThank = false;
+    bool isBreak = false;
 
     void Update()
     {
@@ -28,18 +30,27 @@ public class GameManager : SingleTone<GameManager>
             if(is_night) return;
             if (isTalking) return;
             if (isMaking) return;
-            if (!isWaiting) return;
-            smithy.gameObject.SetActive(true);
-            isMaking = true;
-            // if (survived_heros.Count == 0)
-            //     ChangeTime();
-            // else
-            // {
-            //     // cutscene.Black
-            //     smithy.gameObject.SetActive(true);
-            //     isMaking = true;
-                
-            // }
+            
+            if (survived_heros.Count == 0 && !isWaiting)
+                ChangeTime();
+            else
+            {
+                // cutscene.Black
+                if(isBreak)
+                {
+                    smithy.gameObject.SetActive(true);
+                    isMaking = true;
+                }
+                else
+                {
+                    CheckRemainWeaponNeedHero();
+                }
+                if(isThank)
+                {
+                    OpenSell();
+                    isThank = false;
+                }
+            }
         }
     }
     #endregion
@@ -56,10 +67,10 @@ public class GameManager : SingleTone<GameManager>
     [Header("Shop Data")]
     #region About Shop Datas
     private HeroBase cur_hero;
-    public Sprite nullImg;
-    public Sprite[] imgs;
-    [SerializeField] Image hero_Image;
     [SerializeField] TMP_Text hero_Text;
+    [SerializeField] TMP_Text reward_Text;
+    [SerializeField] GameObject reward_Panel;
+    [SerializeField] int[] prices;
     #endregion
     [Space(10)]
 
@@ -115,6 +126,7 @@ public class GameManager : SingleTone<GameManager>
 
     public void BuySword(int id)
     {
+        EarnCoins(prices[id]);
         for (int i = 0; i < 8; i++)
         {
             materialData.nums[i] -= itemDatas[id].data[i];
@@ -125,7 +137,7 @@ public class GameManager : SingleTone<GameManager>
     {
         for (int i = 0; i < 8; i++)
         {
-            Debug.Log(i);
+            // Debug.Log(i);
             if (!IsExistMaterials(i, itemDatas[id].data[i])) return false;
         }
         return true;
@@ -156,7 +168,7 @@ public class GameManager : SingleTone<GameManager>
         bar.maxValue = max_monsters;
         cur_day = 0;
         is_night = true;
-        monsters = 10;
+        // monsters = 10;
         ChangeTime();
     }
 
@@ -167,7 +179,7 @@ public class GameManager : SingleTone<GameManager>
 
 
         is_night = !is_night;
-        Debug.Log(heros.Count);
+        // Debug.Log(heros.Count);
 
         morning.SetActive(!is_night);
         if (is_night)
@@ -176,7 +188,7 @@ public class GameManager : SingleTone<GameManager>
             IncreaseMonsters();
             CheckClear();
             OpenShop();
-            Debug.Log("?");
+            // Debug.Log("?");
         }
         else
         {
@@ -232,7 +244,7 @@ public class GameManager : SingleTone<GameManager>
                 if (transimage != null)
                 {
                     transimage.sprite = randomSprite;
-                    Debug.Log("바꿈");
+                    // Debug.Log("바꿈");
                 }
             }
         }
@@ -246,17 +258,17 @@ public class GameManager : SingleTone<GameManager>
         if (parentObj != null)
         {
         parentObj.SetActive(true);
-            Debug.Log("parent있음");
+            // Debug.Log("parent있음");
             foreach(Transform child in parentObj.transform)
             {
-                Debug.Log("자식찾는중...");
+                // Debug.Log("자식찾는중...");
 
                 string childName = child.name;
                 Sprite[] sprites = Resources.LoadAll<Sprite>("Character/"+childName);
 
                 if(sprites == null|| sprites.Length == 0)
                 {
-                    Debug.Log("폴더가 없거나 파일이 없음");
+                    // Debug.Log("폴더가 없거나 파일이 없음");
 
                     continue;
                 }
@@ -264,13 +276,13 @@ public class GameManager : SingleTone<GameManager>
                 Image transimg = child.GetComponent<Image>();
                 if(transimg != null)
                 {
-                    Debug.Log("스프라이트 바꿈");
+                    // Debug.Log("스프라이트 바꿈");
 
                     transimg.sprite = RandomSprite;
                     hero.SetSprites(transimg.sprite);
                 }
             }
-            Debug.Log(parentObj.name);
+            // Debug.Log(parentObj.name);
         }
 
         hero.text = "Hug Me Please";
@@ -372,7 +384,6 @@ public class GameManager : SingleTone<GameManager>
     #endregion
 
 
-
     public void OpenSell()
     {
         /*
@@ -381,6 +392,7 @@ public class GameManager : SingleTone<GameManager>
         
         ChangeTime()
         */
+        //
         CheckRemainWeaponNeedHero();
     }
     public void SetWeaponHero()
@@ -414,25 +426,33 @@ public class GameManager : SingleTone<GameManager>
     public void CheckRemainWeaponNeedHero()    
     {
         talkingPanel.SetActive(false);
+        reward_Panel.SetActive(false);
         Debug.Log("cur Survived : " + survived_heros.Count.ToString());
 
+        isWaiting = survived_heros.Count > 0;
         if (survived_heros.Count > 0)
         {
-
             var hero = survived_heros.Dequeue();
             ChangeHero(hero);
-            GetMaterials(hero.earn_coins, hero.earn_data);
+            if(hero.earn_coins > 0)
+            {
+                reward_Panel.SetActive(true);
+                ViewGetMaterials();
+                GetMaterials(hero.earn_coins, hero.earn_data);
+            }
+                
             isTalking = true;
             Invoke("TryText", 0.4f);
             
             if(hero.GetSword() == null)
             {
+                isBreak = true;
                 cur_hero = hero;
-
             }
             else
             {
-                Debug.Log("같은 친구 옴");
+                isBreak = false;
+                // Debug.Log("같은 친구 옴");
                 heros.Enqueue(hero);
             }
         }
@@ -445,9 +465,16 @@ public class GameManager : SingleTone<GameManager>
             parentObj.SetActive(false);
             }
             smithy.gameObject.SetActive(false);
+            isMaking = false;
+            isTalking = false;
         }
     }
 
+    private void ViewGetMaterials()
+    {
+        isTalking = true;
+        DOTween.To(()=> "", x=>reward_Text.text = x, "I Got It!", 0.5f).OnComplete(() => isTalking = false);
+    }
 
     public void OpenShop()
     {
@@ -486,6 +513,12 @@ public class GameManager : SingleTone<GameManager>
     public void GetText(HeroBase hero)
     {
         
+    }
+    public void ThankYou()
+    {
+        isMaking = false;
+        isThank = true;
+        SetText("Thank you! I will be back."); 
     }
 
     public void SetText(String text)

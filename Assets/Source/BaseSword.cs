@@ -32,6 +32,8 @@ public abstract class BaseSword : MonoBehaviour
             UpgradeEnd = true;
             SwordInfo swordInfo = new SwordInfo(AtkDamge, SurvivalRate, DestroyRate);
             SingleTone<GameManager>.Instance.GetSword(swordInfo);
+            SingleTone<UIManager>.Instance.UpgrageFinish();
+
             return;
         }
         AtkDamge += value;

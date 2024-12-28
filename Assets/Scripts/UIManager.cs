@@ -25,12 +25,12 @@ public class UIManager : SingleTone<UIManager>
         BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
         if (baseSword != null)
         {
-            Debug.Log("È®ÀÎ" + baseSword.name);
+            Debug.Log("È®ï¿½ï¿½" + baseSword.name);
 
             Destroy(baseSword.gameObject);
         }
         SingleTone<GameManager>.Instance.SetWeaponHero();
-        SingleTone<GameManager>.Instance.CheckRemainWeaponNeedHero();
+        SingleTone<GameManager>.Instance.ThankYou();
         
     }
 }

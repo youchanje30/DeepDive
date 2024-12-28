@@ -27,7 +27,6 @@ public class UIManager : SingleTone<UIManager>
         BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
         if (baseSword != null)
         {
-            Debug.Log("Ȯ��" + baseSword.name);
 
             Destroy(baseSword.gameObject);
         }

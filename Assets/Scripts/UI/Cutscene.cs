@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class Cutscene : CutScenes
+public class Cutscene : Scenes
 {
-    public Image img;
 
     float a = 0;
 
@@ -14,10 +13,9 @@ public class Cutscene : CutScenes
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    public void Run()
+
+    private void OnEnable()
     {
-        img = GameObject.Find("Production/Panel").GetComponent<Image>();
-        Debug.Log("ÀÛµ¿Áß?");
         Black();
 
     }
@@ -29,14 +27,19 @@ public class Cutscene : CutScenes
     [ContextMenu("Black")]
     public void Black()
     {
-        DOTween.To(() => a, x=> a = x, 1f, 2f).OnComplete(() => White());
+        DOTween.To(() => a, x=> a = x, 1f, 2f).OnComplete(() =>
+        {
+
+            SingleTone<GameManager>.Instance.OpenSmithy();
+            White();
+        });
         
     }
 
     [ContextMenu("White")]
     public void White()
     {
-        DOTween.To(() => a, x=> a = x, 0f, 0.5f); // .OnComplete(() => Black());
+        DOTween.To(() => a, x => a = x, 0f, 0.5f).OnComplete(() => { gameObject.SetActive(false); }); // .OnComplete(() => Black());
     }
 
 

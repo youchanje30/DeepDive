@@ -2972,6 +2972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116b79ba3de412640a75f62faf834871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnd: 0
   img: {fileID: 0}
 --- !u!114 &660187893
 MonoBehaviour:
@@ -5784,6 +5785,7 @@ GameObject:
   - component: {fileID: 919732300}
   - component: {fileID: 919732299}
   - component: {fileID: 919732298}
+  - component: {fileID: 919732302}
   m_Layer: 5
   m_Name: Production
   m_TagString: Untagged
@@ -5876,6 +5878,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &919732302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919732297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f6c5b9e3de20d4cbc65cb49025711a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scenes:
+  - {fileID: 1985948469}
+  - {fileID: 1033496512}
+  - {fileID: 660187892}
 --- !u!1 &919807639
 GameObject:
   m_ObjectHideFlags: 0
@@ -6565,7 +6583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1033496508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6649,6 +6667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2141702ca8b8d43a8a7ab439881c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnd: 0
   img: {fileID: 0}
 --- !u!1 &1084854360
 GameObject:
@@ -7184,7 +7203,7 @@ MonoBehaviour:
   morning: {fileID: 1798448150}
   bar: {fileID: 2034827770}
   talkingPanel: {fileID: 1142800401}
-  cutscene: {fileID: 1033496512}
+  cutscene: {fileID: 0}
   monsters: 15
   max_monsters: 100
   increase_monsters: 10
@@ -11700,6 +11719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cfeb26a7ae95b42b7aad968e8021bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnd: 0
   img: {fileID: 0}
 --- !u!1 &1993921044 stripped
 GameObject:

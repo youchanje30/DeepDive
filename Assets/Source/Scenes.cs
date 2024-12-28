@@ -7,15 +7,15 @@ public class Scenes : MonoBehaviour
 {
     public bool isEnd;
     public Image img;
+    GameObject curscene;
     public void Start()
     {
         img = GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Begin(GameObject go)
     {
-        
+        go = curscene;
     }
     public bool GetEnd()
     {

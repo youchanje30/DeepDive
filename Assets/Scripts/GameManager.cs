@@ -38,7 +38,7 @@ public class GameManager : SingleTone<GameManager>
                 // cutscene.Black
                 if (isBreak)
                 {
-                    cutscene.gameObject.SetActive(true);
+                    cutscene.NextScene();
                     // OpenSmithy();
                 }
                 else
@@ -82,7 +82,7 @@ public class GameManager : SingleTone<GameManager>
         morning.SetActive(false);
         isMaking = true;
     }
-    public Scenes cutscene;
+    public AllScene cutscene;
 
 
     private bool is_night;

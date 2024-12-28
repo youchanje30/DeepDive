@@ -475,8 +475,8 @@ MonoBehaviour:
   m_text: "\uACF5\uC8FC\uB2D8\uACFC \uD568\uAED8\uD560 \uB0A0\uC744 \uC0C1\uC0C1\uD558\uBA70 
     \uC9C0\uB0B4\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7423f26e501b71e488917f26174af29c, type: 2}
-  m_sharedMaterial: {fileID: 1810051385327970789, guid: 7423f26e501b71e488917f26174af29c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2969,9 +2969,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 660187890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5169b18c266bab4091d35b9636b98d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 116b79ba3de412640a75f62faf834871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img: {fileID: 0}
 --- !u!114 &660187893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6564,7 +6565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1033496508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7183,7 +7184,7 @@ MonoBehaviour:
   morning: {fileID: 1798448150}
   bar: {fileID: 2034827770}
   talkingPanel: {fileID: 1142800401}
-  cutscene: {fileID: 0}
+  cutscene: {fileID: 1033496512}
   monsters: 15
   max_monsters: 100
   increase_monsters: 10
@@ -7196,7 +7197,7 @@ MonoBehaviour:
   hero_max_cnt: 10
   materialData:
     coins: 100
-    nums: 6f81f4050400000004000000000000000000000000000000000000000000000000000000
+    nums: 6f81f405040000000400000000000000000000000000000000000000000000001f000000
     prices: f401000020030000b0040000d0070000ac0d0000cc10000088130000581b000000000000
   shop: {fileID: 903188638}
   itemDatas:
@@ -11696,9 +11697,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1985948465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5169b18c266bab4091d35b9636b98d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 23cfeb26a7ae95b42b7aad968e8021bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img: {fileID: 0}
 --- !u!1 &1993921044 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6985908518646340740, guid: ce4de0118a184e842a0a2d77f8688ed2, type: 3}

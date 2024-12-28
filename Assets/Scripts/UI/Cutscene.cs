@@ -27,6 +27,8 @@ public class Cutscene : Scenes
     [ContextMenu("Black")]
     public void Black()
     {
+        isEnd = true;
+
         DOTween.To(() => a, x=> a = x, 1f, 2f).OnComplete(() =>
         {
 
@@ -39,7 +41,9 @@ public class Cutscene : Scenes
     [ContextMenu("White")]
     public void White()
     {
-        DOTween.To(() => a, x => a = x, 0f, 0.5f).OnComplete(() => { gameObject.SetActive(false); }); // .OnComplete(() => Black());
+        DOTween.To(() => a, x => a = x, 0f, 0.5f).OnComplete(() => { gameObject.SetActive(false);
+        isEnd = false;
+        }); // .OnComplete(() => Black());
     }
 
 

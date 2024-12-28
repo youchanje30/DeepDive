@@ -29,7 +29,7 @@ public class WoodSword : BaseSword
         if(hit.collider != null)
         {
             Vector2 MousePos2D = new Vector2(WorldPos.x + randomOffsetx, WorldPos.y + randomOffsety);
-
+            float maxDistance = 2;
             Vector2 nearPos = Vector2.zero;
             float maxWeight = float.MinValue;
             for (int i = 0; i < TempCnt; i++)
@@ -37,7 +37,7 @@ public class WoodSword : BaseSword
                 if (!UpgradeTargets.Contains(UpgradeTarget[i])){
                     float distance = Vector2.Distance(MousePos2D, UpgradeTarget[i]);
 
-                    float weight = distance > 0 ? Mathf.Min(1 / distance, maxValue) : maxValue;
+                    float weight = maxValue * (1 - Mathf.Clamp01(distance / maxDistance));
                     if (weight > maxWeight)
                     {
                         maxWeight = weight;//near Distance weight

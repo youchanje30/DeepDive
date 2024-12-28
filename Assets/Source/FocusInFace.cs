@@ -18,6 +18,8 @@ public class FocusInFace : Scenes
     }
     void FocusFaceIn()
     {
+        isEnd = true;
+
         transform.DOScale(1, 2).OnComplete(() =>
         {
             Invoke("FocusIn", 1);
@@ -36,6 +38,8 @@ public class FocusInFace : Scenes
         transform.DOScale(11, 2).OnComplete(() =>
         {
             gameObject.SetActive(false);
+            isEnd = false;
+
         });
     }
 }

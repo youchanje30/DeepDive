@@ -27,16 +27,16 @@ public class GameManager : SingleTone<GameManager>
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(is_night) return;
+            if (is_night) return;
             if (isTalking) return;
             if (isMaking) return;
-            
+
             if (survived_heros.Count == 0 && !isWaiting)
                 ChangeTime();
             else
             {
                 // cutscene.Black
-                if(isBreak)
+                if (isBreak)
                 {
                     cutscene.gameObject.SetActive(true);
                     // OpenSmithy();
@@ -45,13 +45,34 @@ public class GameManager : SingleTone<GameManager>
                 {
                     CheckRemainWeaponNeedHero();
                 }
-                if(isThank)
+                if (isThank)
                 {
                     OpenSell();
                     isThank = false;
                 }
             }
         }
+        if (bar.value == bar.minValue)
+        {
+            Debug.Log("값 꽉참");
+            Winner();
+        }
+    }
+    public void Winner()
+    {
+        List<HeroBase> heroBases = new List<HeroBase>();
+        while (survived_heros.Count > 0)
+        {
+
+            heroBases.Add(survived_heros.Dequeue());
+        }
+        if (heroBases.Count > 0)
+        {
+            int random = UnityEngine.Random.Range(0, heroBases.Count);
+            HeroBase winner = heroBases[random];
+            Debug.Log(winner);
+        }
+
     }
     #endregion
     public void OpenSmithy()
@@ -63,7 +84,7 @@ public class GameManager : SingleTone<GameManager>
     }
     public Scenes cutscene;
 
-    
+
     private bool is_night;
 
     [SerializeField] private int monsters;
@@ -87,7 +108,7 @@ public class GameManager : SingleTone<GameManager>
     #region About Hero Datas
     public Queue<HeroBase> heros = new Queue<HeroBase>(); // BaseHero
     public int hero_increase_day;
-    [SerializeField] int hero_max_cnt; 
+    [SerializeField] int hero_max_cnt;
     private int cur_day = 0;
     public Queue<HeroBase> survived_heros = new Queue<HeroBase>();
     #endregion
@@ -136,12 +157,12 @@ public class GameManager : SingleTone<GameManager>
     {
         for (int i = 0; i < 8; i++)
         {
-            if(itemDatas[id].data[i] > 0)
+            if (itemDatas[id].data[i] > 0)
             {
                 obj.Move(i);
             }
         }
-        
+
     }
 
 
@@ -178,7 +199,7 @@ public class GameManager : SingleTone<GameManager>
     {
         return materialData.coins > materialData.prices[id] * val;
     }
-    public void UseCoins(int id,int val) => materialData.coins -= materialData.prices[id] * val;
+    public void UseCoins(int id, int val) => materialData.coins -= materialData.prices[id] * val;
     public void EarnCoins(int val) => materialData.coins += val;
     #endregion
     public GameObject shop;
@@ -196,7 +217,7 @@ public class GameManager : SingleTone<GameManager>
     public void ChangeTime()
     {
         // except process
-        if(!is_night && survived_heros.Count > 0) return;
+        if (!is_night && survived_heros.Count > 0) return;
 
 
         is_night = !is_night;
@@ -228,7 +249,7 @@ public class GameManager : SingleTone<GameManager>
     private void ComeNewHero()
     {
         if (!(cur_day >= hero_increase_day && heros.Count < hero_max_cnt)) return;
-        
+
         cur_day = 0;
         AddRandomHero();
     }
@@ -278,20 +299,20 @@ public class GameManager : SingleTone<GameManager>
 
         GameObject parentObj = GameObject.Find("Main/BgCanvas/Character");
 
-        var path = UnityEngine.Random.Range(1, 10+1) <= 3 ? "Handsome/" : "Character/";
+        var path = UnityEngine.Random.Range(1, 10 + 1) <= 3 ? "Handsome/" : "Character/";
 
         if (parentObj != null)
         {
-        parentObj.SetActive(true);
+            parentObj.SetActive(true);
             // Debug.Log("parent있음");
-            foreach(Transform child in parentObj.transform)
+            foreach (Transform child in parentObj.transform)
             {
                 // Debug.Log("자식찾는중...");
 
                 string childName = child.name;
-                Sprite[] sprites = Resources.LoadAll<Sprite>(path+childName);
+                Sprite[] sprites = Resources.LoadAll<Sprite>(path + childName);
 
-                if(sprites == null|| sprites.Length == 0)
+                if (sprites == null || sprites.Length == 0)
                 {
                     Debug.Log("폴더가 없거나 파일이 없음");
 
@@ -299,7 +320,7 @@ public class GameManager : SingleTone<GameManager>
                 }
                 Sprite RandomSprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
                 Image transimg = child.GetComponent<Image>();
-                if(transimg != null)
+                if (transimg != null)
                 {
                     // Debug.Log("스프라이트 바꿈");
 
@@ -324,14 +345,14 @@ public class GameManager : SingleTone<GameManager>
     private void Combat()
     {
         int cnt = heros.Count;
-        while(cnt-->0)
+        while (cnt-- > 0)
         {
             var cur_hero = heros.Dequeue();
             cur_hero.Battle();
         }
     }
 
-    
+
 
     private void CheckClear()
     {
@@ -356,13 +377,13 @@ public class GameManager : SingleTone<GameManager>
             Debug.Log("I Killed!" + hero.name + hero.sword.Damage.ToString());
         }
         int item_cnt = 0;
-        while (val-->0)
+        while (val-- > 0)
         {
-            if(item_cnt < 2 && Try_Get_Item())
+            if (item_cnt < 2 && Try_Get_Item())
             {
                 item_cnt++;
-                
-                int id = 8 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 64+1)));
+
+                int id = 8 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 64 + 1)));
                 hero.earn_data[id] = 1;
             }
             else
@@ -404,7 +425,7 @@ public class GameManager : SingleTone<GameManager>
     private void IncreaseMonsters()
     {
         // 단순히 2배 늘어남
-        monsters  = Mathf.FloorToInt(multiple_monsters * monsters) + increase_monsters;
+        monsters = Mathf.FloorToInt(multiple_monsters * monsters) + increase_monsters;
     }
     #endregion
 
@@ -422,15 +443,15 @@ public class GameManager : SingleTone<GameManager>
     }
     public void SetWeaponHero()
     {
-        if(cur_hero == null)
+        if (cur_hero == null)
         {
             Debug.Log("Something Wrong");
             Debug.Log("It Shoudn't be Null");
             return;
         }
-            
-        
-        if(tempinfo != null)
+
+
+        if (tempinfo != null)
         {
             cur_hero.SetSword(tempinfo);
         }
@@ -441,14 +462,15 @@ public class GameManager : SingleTone<GameManager>
     }
 
     SwordInfo tempinfo;
-    public void GetSword(SwordInfo sword) {
+    public void GetSword(SwordInfo sword)
+    {
         if (sword != null)
         {
             tempinfo = sword;
         }
     }
     public GameObject smithy;
-    public void CheckRemainWeaponNeedHero()    
+    public void CheckRemainWeaponNeedHero()
     {
         talkingPanel.SetActive(false);
         reward_Panel.SetActive(false);
@@ -459,7 +481,7 @@ public class GameManager : SingleTone<GameManager>
         {
             var hero = survived_heros.Dequeue();
             ChangeHero(hero);
-            if(hero.earn_coins > 0)
+            if (hero.earn_coins > 0)
             {
                 reward_Panel.SetActive(true);
                 reward_Panel.GetComponent<RewardPanel>().Setting(hero.earn_coins, hero.earn_data);
@@ -467,11 +489,11 @@ public class GameManager : SingleTone<GameManager>
 
                 GetMaterials(hero.earn_coins, hero.earn_data);
             }
-                
+
             isTalking = true;
             Invoke("TryText", 0.4f);
-            
-            if(hero.GetSword() == null)
+
+            if (hero.GetSword() == null)
             {
                 isBreak = true;
                 cur_hero = hero;
@@ -489,7 +511,7 @@ public class GameManager : SingleTone<GameManager>
             GameObject parentObj = GameObject.Find("Main/BgCanvas/Character");
             if (parentObj != null)
             {
-            parentObj.SetActive(false);
+                parentObj.SetActive(false);
             }
             smithy.gameObject.SetActive(false);
             isMaking = false;
@@ -500,7 +522,7 @@ public class GameManager : SingleTone<GameManager>
     private void ViewGetMaterials()
     {
         isTalking = true;
-        DOTween.To(()=> "", x=>reward_Text.text = x, "당신을 위한 선물이에요", 0.5f).OnComplete(() => isTalking = false);
+        DOTween.To(() => "", x => reward_Text.text = x, "당신을 위한 선물이에요", 0.5f).OnComplete(() => isTalking = false);
     }
 
     public void OpenShop()
@@ -534,7 +556,7 @@ public class GameManager : SingleTone<GameManager>
     {
         talkingPanel.SetActive(true);
         isTalking = true;
-        
+
         SetText(RandomString());
     }
 
@@ -548,7 +570,7 @@ public class GameManager : SingleTone<GameManager>
 
     public void GetText(HeroBase hero)
     {
-        
+
     }
     public void ThankYou()
     {
@@ -558,13 +580,13 @@ public class GameManager : SingleTone<GameManager>
         morning.SetActive(true);
         isMaking = false;
         isThank = true;
-        SetText("고마워요! 다음에봐요 공주님"); 
+        SetText("고마워요! 다음에봐요 공주님");
     }
 
     public void SetText(String text)
     {
         isTalking = true;
-        DOTween.To(()=> "", x=>hero_Text.text = x, text, 1f).OnComplete(() => isTalking = false);
+        DOTween.To(() => "", x => hero_Text.text = x, text, 1f).OnComplete(() => isTalking = false);
     }
     #endregion
 

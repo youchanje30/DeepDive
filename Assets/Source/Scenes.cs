@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Scenes : MonoBehaviour
 {
+    public bool isEnd;
     public Image img;
     public void Start()
     {
@@ -15,5 +16,9 @@ public class Scenes : MonoBehaviour
     void Update()
     {
         
+    }
+    public bool GetEnd()
+    {
+        return isEnd;
     }
 }

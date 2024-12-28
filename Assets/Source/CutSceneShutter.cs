@@ -14,6 +14,7 @@ public class CutSceneShutter : Scenes
     }
     void ShutterDown()
     {
+        isEnd = true;
         img.transform.DOLocalMoveY(0, 1.2f).SetEase(Ease.InOutQuart).OnComplete(() => 
         { 
             SingleTone<GameManager>.Instance.OpenSmithy();    
@@ -23,8 +24,10 @@ public class CutSceneShutter : Scenes
     }
     void ShutterUp()
     {
-        img.transform.DOLocalMoveY(1080, 1.2f).SetEase(Ease.InOutQuart).OnComplete(() => { gameObject.SetActive(false); });
-
+        img.transform.DOLocalMoveY(1080, 1.2f).SetEase(Ease.InOutQuart).OnComplete(() => {
+            gameObject.SetActive(false); 
+            isEnd = false;
+        });
     }
     // Update is called once per frame
     void Update()

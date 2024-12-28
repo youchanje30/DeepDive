@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : SingleTone<UIManager>
 {
+    public Inventory obj;
     string clickname;
     public void SetIndex()
     {
@@ -13,6 +14,7 @@ public class UIManager : SingleTone<UIManager>
         if(ClickedObj != null)
         {
             clickname = ClickedObj.name;
+            obj.CheckID(clickname);
         }
     }
     public string GetIndex()
@@ -25,7 +27,6 @@ public class UIManager : SingleTone<UIManager>
         BaseSword baseSword = GameObject.FindAnyObjectByType<BaseSword>();
         if (baseSword != null)
         {
-            Debug.Log("Ȯ��" + baseSword.name);
 
             Destroy(baseSword.gameObject);
         }

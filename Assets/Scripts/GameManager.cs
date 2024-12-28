@@ -38,9 +38,7 @@ public class GameManager : SingleTone<GameManager>
                 // cutscene.Black
                 if(isBreak)
                 {
-                    smithy.gameObject.SetActive(true);
-                    anvilBG.SetActive(true);
-                    isMaking = true;
+                    OpenSmithy();
                 }
                 else
                 {
@@ -55,14 +53,21 @@ public class GameManager : SingleTone<GameManager>
         }
     }
     #endregion
-
-    public Cutscene cutscene;
+    public void OpenSmithy()
+    {
+        smithy.gameObject.SetActive(true);
+        anvilBG.SetActive(true);
+        isMaking = true;
+    }
+    public Scenes cutscene;
 
     
     private bool is_night;
 
     [SerializeField] private int monsters;
     [SerializeField] private int max_monsters;
+    [SerializeField] private int increase_monsters;
+    [SerializeField] private float multiple_monsters;
 
 
     [Header("Shop Data")]
@@ -124,6 +129,19 @@ public class GameManager : SingleTone<GameManager>
     {
         return materialData.nums[id] >= val;
     }
+
+    public void CheckData(int id, Inventory obj)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if(itemDatas[id].data[i] > 0)
+            {
+                obj.Move(i);
+            }
+        }
+        
+    }
+
 
     public void BuySword(int id)
     {
@@ -320,14 +338,6 @@ public class GameManager : SingleTone<GameManager>
         }
     }
 
-    private void CheckMonsterDead(int hero)
-    {
-        if (monsters <= 0)
-        {
-            HeroEnd(hero);
-        }
-    }
-
     public bool Try_Get_Item()
     {
         // Get Item 20%
@@ -337,6 +347,11 @@ public class GameManager : SingleTone<GameManager>
     public void KillMonster(int val, HeroBase hero)
     {
         monsters -= val;
+        if (monsters <= 0)
+        {
+            monsters = 100;
+            Debug.Log("I Killed!" + hero.name + hero.sword.Damage.ToString());
+        }
         int item_cnt = 0;
         while (val-->0)
         {
@@ -386,7 +401,7 @@ public class GameManager : SingleTone<GameManager>
     private void IncreaseMonsters()
     {
         // 단순히 2배 늘어남
-        monsters *= 2;
+        monsters  = Mathf.FloorToInt(multiple_monsters * monsters) + increase_monsters;
     }
     #endregion
 
@@ -480,7 +495,7 @@ public class GameManager : SingleTone<GameManager>
     private void ViewGetMaterials()
     {
         isTalking = true;
-        DOTween.To(()=> "", x=>reward_Text.text = x, "I Got It!", 0.5f).OnComplete(() => isTalking = false);
+        DOTween.To(()=> "", x=>reward_Text.text = x, "당신을 위한 선물이에요", 0.5f).OnComplete(() => isTalking = false);
     }
 
     public void OpenShop()
@@ -515,9 +530,16 @@ public class GameManager : SingleTone<GameManager>
         talkingPanel.SetActive(true);
         isTalking = true;
         
-        SetText("Hug Me Please");
+        SetText(RandomString());
     }
 
+    public String[] helloText;
+
+    public String RandomString()
+    {
+        return helloText[UnityEngine.Random.Range(0, helloText.Length)];
+
+    }
 
     public void GetText(HeroBase hero)
     {
@@ -528,13 +550,46 @@ public class GameManager : SingleTone<GameManager>
         anvilBG.SetActive(false);
         isMaking = false;
         isThank = true;
-        SetText("Thank you! I will be back."); 
+        SetText("고마워요! 다음에봐요 공주님"); 
     }
 
     public void SetText(String text)
     {
         isTalking = true;
-        DOTween.To(()=> "", x=>hero_Text.text = x, text, 0.5f).OnComplete(() => isTalking = false);
+        DOTween.To(()=> "", x=>hero_Text.text = x, text, 1f).OnComplete(() => isTalking = false);
     }
     #endregion
+
+
+    public String[] textOfID;
+    public string GetTextOfID(int id)
+    {
+        return textOfID[id];
+    }
+
+    public void SetToolTip(string name)
+    {
+        int i = int.Parse(name);
+        SingleTone<TooltipManager>.Instance.SetText(materialData.nums[i], textOfID[i]);
+    }
+
+    public void SetWeaponToolTip(string name)
+    {
+        int i = int.Parse(name);
+
+        List<String> strings = new List<string>();
+
+        for (int id = 0; id < 8; id++)
+        {
+            if (itemDatas[i].data[id] > 0)
+            {
+                // i == item, id == material
+                String str = GetTextOfID(id) + " " + itemDatas[i].data[id].ToString();
+                Debug.Log(str);
+                strings.Add(str);
+            }
+        }
+
+        SingleTone<TooltipManager>.Instance.SetSwordText((strings.Count > 0 ? strings[0] : ""), (strings.Count > 1 ? strings[1] : ""), (strings.Count > 2 ? strings[2] : ""));
+    }
 }

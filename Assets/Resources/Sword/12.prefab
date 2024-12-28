@@ -103,8 +103,8 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: -2, y: 0}
   - {x: -4, y: 0}
-  AtkDamge: 9
-  maxValue: 6
+  AtkDamge: 10
+  maxValue: 7
   SurvivalRate: 30
   DestroyRate: 10
   UpgradeEnd: 0

@@ -103,11 +103,13 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: -2, y: 0}
   - {x: -4, y: 0}
-  AtkDamge: 10
-  maxValue: 7
+  UpgradeTargets: []
+  AtkDamge: 11
+  maxValue: 8
   SurvivalRate: 30
   DestroyRate: 10
   UpgradeEnd: 0
+  TempCnt: 0
 --- !u!61 &6021391495925325996
 BoxCollider2D:
   m_ObjectHideFlags: 0

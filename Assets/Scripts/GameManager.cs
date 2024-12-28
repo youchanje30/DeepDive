@@ -6,22 +6,45 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Globalization;
-using Unity.Mathematics;
-using Unity.VisualScripting;
+using DG.Tweening;
 
 public class GameManager : SingleTone<GameManager>
 {
     #region is shoud be removed
     public GameObject morning;
     public Slider bar;
+    bool isTalking = false;
+    bool isMaking = false;
+    bool isWaiting = false;
+    public GameObject talkingPanel;
+
     void Update()
     {
         bar.value = monsters;
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(is_night) return;
+            if (isTalking) return;
+            if (isMaking) return;
+            if (!isWaiting) return;
+            smithy.gameObject.SetActive(true);
+            isMaking = true;
+            // if (survived_heros.Count == 0)
+            //     ChangeTime();
+            // else
+            // {
+            //     // cutscene.Black
+            //     smithy.gameObject.SetActive(true);
+            //     isMaking = true;
+                
+            // }
+        }
     }
     #endregion
 
-
+    public Cutscene cutscene;
 
     
     private bool is_night;
@@ -390,6 +413,7 @@ public class GameManager : SingleTone<GameManager>
     public GameObject smithy;
     public void CheckRemainWeaponNeedHero()    
     {
+        talkingPanel.SetActive(false);
         Debug.Log("cur Survived : " + survived_heros.Count.ToString());
 
         if (survived_heros.Count > 0)
@@ -398,11 +422,12 @@ public class GameManager : SingleTone<GameManager>
             var hero = survived_heros.Dequeue();
             ChangeHero(hero);
             GetMaterials(hero.earn_coins, hero.earn_data);
-            SetImage(hero);
+            isTalking = true;
+            Invoke("TryText", 0.4f);
+            
             if(hero.GetSword() == null)
             {
                 cur_hero = hero;
-                smithy.gameObject.SetActive(true);
 
             }
             else
@@ -442,12 +467,31 @@ public class GameManager : SingleTone<GameManager>
     void SetImage(HeroBase hero)
     {
         //hero_Image.sprite = hero.sprite;
-        hero_Text.text = hero.text;
+        // hero_Text.text = hero.text;
     }
     #endregion
 
-    // void Update()
-    // {
+
+
+
+    #region About Chat
+    public void TryText()
+    {
+        talkingPanel.SetActive(true);
+        isTalking = true;
+        SetText("Hug Me Please");
+    }
+
+
+    public void GetText(HeroBase hero)
+    {
         
-    // }
+    }
+
+    public void SetText(String text)
+    {
+        isTalking = true;
+        DOTween.To(()=> "", x=>hero_Text.text = x, text, 0.5f).OnComplete(() => isTalking = false);
+    }
+    #endregion
 }

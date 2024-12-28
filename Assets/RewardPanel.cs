@@ -7,10 +7,15 @@ using UnityEngine.UI;
 
 public class RewardPanel : MonoBehaviour
 {
+
+    public GameObject[] objs;
+
     public UnityEngine.UI.Image[] images;
     public TMP_Text[] texts;
 
     
+
+
 
 
 
@@ -28,11 +33,16 @@ public class RewardPanel : MonoBehaviour
             images[i].sprite = SingleTone<GameManager>.Instance.GetSpriteOfID(item.Key);
             texts[i++].text = item.Value.ToString();
         }
+
+        for (int ci = 0; ci < 3; ci++)
+        {
+            objs[ci].SetActive(true);
+        }
         
-        // for (; i < 3; ++i)
-        // {
-        //     images[i].gameObject.SetActive(false);
-        // }
+        for (; i < 3; ++i)
+        {
+            objs[i].SetActive(false);
+        }
         
     }
 }

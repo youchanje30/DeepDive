@@ -603,7 +603,19 @@ public class GameManager : SingleTone<GameManager>
     private void ViewGetMaterials()
     {
         isTalking = true;
-        DOTween.To(() => "", x => reward_Text.text = x, "당신을 위한 선물이에요", 0.5f).OnComplete(() => isTalking = false);
+        DOTween.To(() => "", x => reward_Text.text = x, GiftText(), 0.5f).OnComplete(() => isTalking = false);
+    }
+
+    public string[] giftText;
+    public String GiftText()
+    {
+        return giftText[UnityEngine.Random.Range(0, giftText.Length)];
+    }
+
+    public string[] thankText;
+    public String ThankText()
+    {
+        return thankText[UnityEngine.Random.Range(0, thankText.Length)];
     }
 
     public void OpenShop()
@@ -657,7 +669,7 @@ public class GameManager : SingleTone<GameManager>
     {
         SingleTone<UIManager>.Instance.ReZero();
         isThank = true;
-        SetText("고마워요! 다음에봐요 공주님");
+        SetText(ThankText());
     }
 
     public void SetText(String text)

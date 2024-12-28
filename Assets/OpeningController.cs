@@ -47,8 +47,8 @@ public class OpeningController : MonoBehaviour
 
     void Function4()
     {
-        texts[3].DOFade(1f, 1f).OnComplete(() => 
-        texts[3].DOFade(0f, 1f)).OnComplete(() => Function5());
+        texts[3].DOFade(1f, 0.5f).OnComplete(() => 
+        texts[3].DOFade(0f, 0.5f)).OnComplete(() => Function5());
     }
 
     void Function5()

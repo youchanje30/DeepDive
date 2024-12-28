@@ -21,6 +21,14 @@ public class AudioManager : SingleTone<AudioManager>
     public AudioGroup[] audioGroups;
     public Queue<AudioSource> audioSources = new Queue<AudioSource>();
     public Queue<AudioSource> playingSources = new Queue<AudioSource>();
+    
+    public AudioSource bfs;
+
+    private void Start()
+    {
+        bfs.Play();
+    }
+
 
     public void AddSfx()
     {

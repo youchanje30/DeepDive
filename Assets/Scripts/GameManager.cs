@@ -63,6 +63,8 @@ public class GameManager : SingleTone<GameManager>
 
     [SerializeField] private int monsters;
     [SerializeField] private int max_monsters;
+    [SerializeField] private int increase_monsters;
+    [SerializeField] private float multiple_monsters;
 
 
     [Header("Shop Data")]
@@ -391,7 +393,7 @@ public class GameManager : SingleTone<GameManager>
     private void IncreaseMonsters()
     {
         // 단순히 2배 늘어남
-        monsters *= 2;
+        monsters  = Mathf.FloorToInt(multiple_monsters * monsters) + increase_monsters;
     }
     #endregion
 

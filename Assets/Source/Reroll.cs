@@ -60,9 +60,8 @@ public class Reroll : MonoBehaviour
 
 
 
-    public String[] textOfID;
     private string GetTextOfID(int id)
     {
-        return textOfID[id];
+        return SingleTone<GameManager>.Instance.GetTextOfID(id);
     }
 }

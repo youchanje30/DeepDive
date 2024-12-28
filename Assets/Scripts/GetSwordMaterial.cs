@@ -16,7 +16,7 @@ public class GetSwordMaterial : MonoBehaviour
     public void SetSwordData(int id)
     {
         ClearChildren();
-        SingleTone<GameManager>.Instance.CheckData(id, this);
+        // SingleTone<GameManager>.Instance.CheckData(id, this);
     }
 
     

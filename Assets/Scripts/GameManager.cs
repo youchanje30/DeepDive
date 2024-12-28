@@ -130,13 +130,13 @@ public class GameManager : SingleTone<GameManager>
         return materialData.nums[id] >= val;
     }
 
-    public void CheckData(int id, GetSwordMaterial obj)
+    public void CheckData(int id, Inventory obj)
     {
         for (int i = 0; i < 8; i++)
         {
             if(itemDatas[id].data[i] > 0)
             {
-                obj.AddData(itemDatas[id].data[i], materialData.nums[i], i);
+                obj.Move(i);
             }
         }
         
@@ -554,4 +554,17 @@ public class GameManager : SingleTone<GameManager>
         DOTween.To(()=> "", x=>hero_Text.text = x, text, 1f).OnComplete(() => isTalking = false);
     }
     #endregion
+
+
+    public String[] textOfID;
+    public string GetTextOfID(int id)
+    {
+        return textOfID[id];
+    }
+
+    public void SetToolTip(string name)
+    {
+        int i = int.Parse(name);
+        SingleTone<TooltipManager>.Instance.SetText(materialData.nums[i], textOfID[i]);
+    }
 }

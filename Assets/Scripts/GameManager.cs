@@ -20,6 +20,8 @@ public class GameManager : SingleTone<GameManager>
     bool isThank = false;
     bool isBreak = false;
 
+    public GameObject hammer;
+
     void Update()
     {
         bar.value = monsters;
@@ -51,6 +53,19 @@ public class GameManager : SingleTone<GameManager>
             }
         }
 
+    }
+
+    public Vector2 pos = Vector2.zero;
+    public void HammerPos(Vector2 _pos)
+    {
+        pos = _pos;
+    }
+
+    public void Hammer()
+    {
+        GameObject ham = Instantiate(hammer);
+        ham.transform.position = pos + new Vector2(-0.8f, 0.2f);
+        Debug.Log(pos);
     }
     public GameObject Weddingd;
     public void Winner()

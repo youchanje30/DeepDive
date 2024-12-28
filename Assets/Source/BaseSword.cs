@@ -47,6 +47,7 @@ public abstract class BaseSword : MonoBehaviour
             SingleTone<UIManager>.Instance.UpgrageFinish(this);
             return;
         }
+        SingleTone<GameManager>.Instance.Hammer();
         SingleTone<AudioManager>.Instance.PlaySfx(Sfx.hammer);
         UpgradeTargets.Add(nearpos);
         AtkDamge += value;

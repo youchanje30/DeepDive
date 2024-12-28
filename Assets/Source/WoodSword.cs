@@ -51,6 +51,7 @@ public class WoodSword : BaseSword
                 maxWeight = 1;
             if (maxWeight != float.MinValue)
             {
+                SingleTone<GameManager>.Instance.HammerPos(MousePos2D);
                 DisableCloset(nearPos);
                 Upgrade(maxWeight,nearPos);
             }

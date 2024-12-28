@@ -21,10 +21,14 @@ public class BuyItem : MonoBehaviour
     }
     private void OnEnable()
     {
-        itemcnt = 0;
-        isbuy = false;
+
 
         //Reroll();
+    }
+    public void InitCnt()
+    {
+        itemcnt = 0;
+        isbuy = false;
     }
     void BuyItems()
     {

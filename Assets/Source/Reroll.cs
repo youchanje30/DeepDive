@@ -17,7 +17,10 @@ public class Reroll : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.Log("리로?");
+        for (int i = 0; i < items.Length; i++)
+        {
+            items[i].InitCnt();
+        }
         Reset();
     }
     private void Reset()
@@ -28,25 +31,27 @@ public class Reroll : MonoBehaviour
         List<int> idList = new List<int>();
         for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log("확인");
             items[i].Reroll();
-            Debug.Log("aaa확인");
         }
         for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log("확인aan");
             int ID = items[i].GetID();
             if (idList.Contains(ID))
             {
+                int attempts = 0; 
+                int maxAttempts = 100;
+
                 Debug.Log($"Duplicate ID found :{ID}");
                 while (idList.Contains(ID))
-                {
-                    Debug.Log("���ư�����-----" + ID);
+                {if(attempts >= maxAttempts)
+                    {
+                        break;
+                    }
                     items[i].Reroll();
                     ID = items[i].GetID();
+                    attempts++;
                 }
             }
-            Debug.Log("확인nn");
             texts[i].text = GetTextOfID(items[i].GetID());
             idList.Add(ID);
             

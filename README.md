@@ -1,4 +1,4 @@
-#공주는 대장장이!
+공주는 대장장이!
 
 2024 Deep Dive 게임잼 작품
 빌드 파일 - https://drive.google.com/file/d/142Jege6QOW_AYMyu-WDVu-eraI_rbCcp/view?usp=drive_link

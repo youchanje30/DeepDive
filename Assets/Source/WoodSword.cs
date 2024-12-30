@@ -13,6 +13,8 @@ public class WoodSword : BaseSword
         if (Input.GetMouseButtonDown(0) && !UpgradeEnd)
         {
             SelectUpgrade();
+        }else if(Input.GetMouseButtonDown(0)&& UpgradeEnd){
+            UseBtn();
         }
     }
     
@@ -45,7 +47,6 @@ public class WoodSword : BaseSword
 
                     }
                 }
-                
             }
             if (getTarget())
                 maxWeight = 1;

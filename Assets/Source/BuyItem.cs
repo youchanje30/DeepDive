@@ -10,6 +10,8 @@ public class BuyItem : MonoBehaviour
     public bool isbuy = false;
     public Image img;
     TMP_Text buy;
+    
+    public TMP_Text cost;
     void Start()
     {
         Button button = GetComponent<Button>();
@@ -80,8 +82,10 @@ public class BuyItem : MonoBehaviour
             if (tmp != null)
             {
                 tmp.text = itemcnt.ToString();
+                
             }
             ID = 7 - Mathf.FloorToInt(Mathf.Sqrt(UnityEngine.Random.Range(0, 63 + 1)));
+            cost.text = SingleTone<GameManager>.Instance.materialData.prices[ID].ToString();
             img.sprite = Resources.Load<Sprite>("Material/" + ID.ToString());
         }
     }

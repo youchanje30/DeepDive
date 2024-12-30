@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class GameManager : SingleTone<GameManager>
 {
@@ -20,6 +21,7 @@ public class GameManager : SingleTone<GameManager>
     bool isThank = false;
     bool isBreak = false;
 
+    public GameObject swordMaker;
     public GameObject hammer;
 
     void Update()
@@ -53,6 +55,9 @@ public class GameManager : SingleTone<GameManager>
             }
         }
 
+    }
+    public void NextScenes(){
+        cutscene.NextScene();
     }
 
     public Vector2 pos = Vector2.zero;
@@ -159,6 +164,7 @@ public class GameManager : SingleTone<GameManager>
 
     public void OpenSmithy()
     {
+        // swordMaker.SetActive(true);
         smithy.gameObject.SetActive(true);
         anvilBG.SetActive(true);
         morning.SetActive(false);

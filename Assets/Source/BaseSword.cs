@@ -14,12 +14,13 @@ public abstract class BaseSword : MonoBehaviour
     public float maxValue;//MaxUpgrade
     public float SurvivalRate = 30.0f;   
     public float DestroyRate = 10.0f;
-    public bool UpgradeEnd = false;
+    public static bool UpgradeEnd = false;
     SwordInfo swordInfo;
     int UpgradeCnt = 0;
     public int TempCnt;
     public void Start()
     {
+        
         TempCnt = UpgradeTarget.Length;
         for(int i = 0; i < TempCnt; i++)
         {
@@ -52,6 +53,16 @@ public abstract class BaseSword : MonoBehaviour
         UpgradeTargets.Add(nearpos);
         AtkDamge += value;
         UpgradeCnt++;
+
+        if(UpgradeCnt >= TempCnt)
+        {
+            UpgradeEnd = true;
+        }
+    }
+    public void UseBtn(){
+        SwordInfo swordInfo = new SwordInfo(AtkDamge, SurvivalRate, DestroyRate);
+        SingleTone<GameManager>.Instance.GetSword(swordInfo);
+        SingleTone<UIManager>.Instance.UpgrageFinish(this);
     }
 
     private const string BasePath = "Sword/";
@@ -76,7 +87,11 @@ public abstract class BaseSword : MonoBehaviour
 
         prefabobj.transform.localScale = Vector3.one;
         prefabobj.transform.localPosition = Vector3.zero;
+        UpgradeEnd = false;
         return sword;   
+    }
+    public static bool getUpgrade(){
+        return UpgradeEnd;
     }
 
 }

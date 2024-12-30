@@ -10,6 +10,10 @@ public class OpeningController : MonoBehaviour
     public TMP_Text[] texts;
     public SpriteRenderer img;
 
+    public TMP_Text touchTO;
+
+    public GameObject Tuto;
+
     bool is_fin = false;
 
     private void Update() {
@@ -17,7 +21,9 @@ public class OpeningController : MonoBehaviour
 
         if(Input.anyKeyDown) 
         {
-            SceneManager.LoadScene("TestGameScene");
+            Tuto.SetActive(true);
+            is_fin = !is_fin;
+            // SceneManager.LoadScene("TestGameScene");
         }
     }
 
@@ -53,6 +59,10 @@ public class OpeningController : MonoBehaviour
 
     void Function5()
     {
-        img.DOFade(1f, 1f).OnComplete(() => is_fin = true);
+        img.DOFade(1f, 1f).OnComplete(() => 
+        {
+            touchTO.gameObject.SetActive(true);
+            is_fin = true;
+        });
     }
 }
